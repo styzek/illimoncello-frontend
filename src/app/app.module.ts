@@ -5,6 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponentComponent } from './footer-component/footer-component.component';
 import { HeaderComponentComponent } from './header-component/header-component.component';
+import { PizzaModule } from './pizza/pizza.module';
+import { UserModule } from './user/user.module';
+import { OtherModule } from './other/other.module';
+
 
 @NgModule({
   declarations: [
@@ -14,7 +18,10 @@ import { HeaderComponentComponent } from './header-component/header-component.co
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    PizzaModule,
+    UserModule,
+    OtherModule
   ],
   providers: [],
   bootstrap: [AppComponent]

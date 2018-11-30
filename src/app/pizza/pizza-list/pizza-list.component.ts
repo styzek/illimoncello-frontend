@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PizzasService } from 'src/app/services/pizzas.service';
+import { Ipizza } from 'src/app/domain/ipizza';
 
 @Component({
   selector: 'app-pizza-list',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PizzaListComponent implements OnInit {
 
-  constructor() { }
+data: Ipizza[];
+
+  constructor(private _service: PizzasService) { }
 
   ngOnInit() {
+    this._service.getProductsAll().subscribe(
+      resp => this.data = resp,
+      err => console.log('*** Attention : Il y a eu erreur lors de l\'appel getAll : ' + err));
   }
 
 }

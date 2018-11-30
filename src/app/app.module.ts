@@ -9,6 +9,8 @@ import { PizzaModule } from './pizza/pizza.module';
 import { UserModule } from './user/user.module';
 import { OtherModule } from './other/other.module';
 
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { OtherModule } from './other/other.module';
     AppRoutingModule,
     PizzaModule,
     UserModule,
-    OtherModule
+    OtherModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

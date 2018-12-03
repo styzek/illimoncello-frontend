@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     this.authService.attemptAuth(this.user.username, this.user.password).subscribe(
       data => {
         this.token.saveToken(data.token);
-        this.router.navigate(['user']);
+        this.router.navigate(['welcome']);
       }
     );
   }

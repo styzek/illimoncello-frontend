@@ -12,6 +12,7 @@ import { UserModule } from './user/user.module';
 import { OtherModule } from './other/other.module';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { Interceptor } from './interceptors/my-jwt-interceptor';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { Interceptor } from './interceptors/my-jwt-interceptor';
     UserModule,
     OtherModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [AuthService, TokenStorage, TokenStorage,
 

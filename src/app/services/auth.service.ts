@@ -7,13 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  baseUrl: 'http://localhost:8080/';
+  baseUrl: 'http://localhost:8080/home';
 
   constructor(private http: HttpClient) {
   }
 
-  attemptAuth(ussername: string, password: string): Observable<any> {
-    const credentials = {username: ussername, password: password};
+  attemptAuth(username: string, password: string): Observable<any> {
+    const credentials = {username: username, password: password};
     console.log('attempAuth ::');
     return this.http.post<any>('http://localhost:8080/api/token/generate-token', credentials);
   }

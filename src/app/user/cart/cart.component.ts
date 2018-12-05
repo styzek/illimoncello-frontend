@@ -1,15 +1,45 @@
 import { Component, OnInit } from '@angular/core';
+import { PizzasService } from 'src/app/services/pizzas.service';
+import { Ipizza } from 'src/app/domain/ipizza';
+import * as Rx from "rxjs";	
 
 @Component({
-  selector: 'app-cart',
+  selector: 'app-cart-pizzas',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  cartPizzas: Ipizza[];
+	showDataNotFound = true;
 
-  constructor() { }
+	// Not Found Message
+	messageTitle = 'No Products Found in Cart';
+	messageDescription = 'Please, Add Pizzas to Cart';
 
-  ngOnInit() {
-  }
+	constructor(private _Service: PizzasService) {}
 
+
+
+	ngOnInit() {
+		//const subject = new Rx.BehaviorSubject();
+
+		this.getCartPizza();
+	}
+
+	removeCartPizza(pizza: Ipizza) {
+		this._Service.removeLocalCartPizza(pizza);
+
+		// Recalling
+		this.getCartPizza();
+	}
+
+	getCartPizza() {
+		this.cartPizzas = this._Service.getLocalCartPizzas();
+	}
+
+	addNumberOfPizzaToCart(pizza: Ipizza)
+	{this._Service.addNumberOfPizzaToCart(pizza)}
+	
+	substractNumberOfPizzaToCart(pizza: Ipizza)
+	{this._Service.substractNumberOfPizzaToCart(pizza)}
 }

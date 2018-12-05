@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { TokenStorage } from './user/token.storage';
 import { AuthService } from 'src/app/services/auth.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -27,7 +27,9 @@ import { Interceptor } from './interceptors/my-jwt-interceptor';
     UserModule,
     OtherModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    
   ],
   providers: [AuthService, TokenStorage, TokenStorage,
 

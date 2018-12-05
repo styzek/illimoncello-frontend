@@ -1,4 +1,7 @@
-export interface ICategory {
+import { Ipizza } from "./ipizza";
+
+export interface Icategory {
     id: number;
-    name: string;
+    name: String;
+    pizzas: Ipizza[];
 }

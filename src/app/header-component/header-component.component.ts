@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ApplicationRef, ChangeDetectorRef, NgZone, Input } from '@angular/core';
+import { LoginComponent } from '../user/login/login.component';
+import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
+
 
 @Component({
   selector: 'app-header-component',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponentComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  isLoggedIn : boolean;
+
+  nameUser: string = localStorage.getItem('currentuser');
+   
+
+  constructor(private login: LoginComponent, private ref: ChangeDetectorRef, private zone : NgZone) {
+   
+    login.isLoggedIn().subscribe((value) => {
+      this.isLoggedIn = value;
+      
+    });
+    this.zone.run(() => {
+      this.isLoggedIn = this.isLoggedIn;
+      this.nameUser = this.nameUser;
+    });
+   }
 
   ngOnInit() {
   }
-
+ 
 }

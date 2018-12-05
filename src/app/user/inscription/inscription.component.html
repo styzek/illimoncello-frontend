@@ -1,3 +1,51 @@
-<p>
-  inscription works!
-</p>
+<div class="jumbotron">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6 offset-md-3">
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                  <div class="form-group">
+                      <label for="username">Login</label>
+                      <input type="text" id="username" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': ( f.username.touched || f.username.dirty || submitted ) && f.username.errors }" />
+                      <div *ngIf="submitted || f.username.errors" class="invalid-feedback">
+                          <div *ngIf="f.username.errors.required">Login is required</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label  for="password">Password</label>
+                    <input type="password" id="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': ( f.password.touched || f.password.dirty || submitted ) && f.password.errors }" />
+                    <div *ngIf="submitted || f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                        <div *ngIf="f.password.errors.minlength">Password must be at least 4 characters</div>
+                    </div>
+                </div>
+                  
+                  <div class="form-group">
+                      <label for="name">Name</label>
+                      <input type="text" id="name" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': ( f.name.touched || f.name.dirty || submitted ) && f.name.errors }" />
+                      <div *ngIf="submitted || f.name.errors" class="invalid-feedback">
+                          <div *ngIf="f.name.errors.required">Name is required</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="text" id="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': ( f.email.touched || f.email.dirty || submitted ) && f.email.errors }" />
+                      <div *ngIf="submitted || f.email.errors" class="invalid-feedback">
+                          <div *ngIf="f.email.errors.required">Email is required</div>
+                          <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" id="adress" formControlName="adress" class="form-control" [ngClass]="{ 'is-invalid': ( f.adress.touched || f.adress.dirty || submitted ) && f.adress.errors }" />
+                    <div *ngIf="submitted || f.adress.errors" class="invalid-feedback">
+                        <div *ngIf="f.adress.errors.email">Email must be a valid email address</div>
+                    </div>
+                </div>
+                  <div class="form-group">
+                      <button [disabled]="loading" class="btn btn-primary">Sign up</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,9 +1,77 @@
-<div class="list-group">
-  
-  <div *ngFor="let p of data">
-      <div>
-        {{p.name}}
-      </div>
+<body>
+ 
+<div class="container">
+    <div class="row">
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Choose your category
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" (click)='ngOnInit()'>All</a>
+      <a class="dropdown-item" *ngFor="let category of categories" (click)='pizzaFilterCategory(category.name)'>{{category.name}}</a>
+    </div>
   </div>
+  </div>
+  </div>
+
   
-</div>
+  
+<!-- Section: Products v.1 -->
+<section class="text-center my-5">
+
+  <!-- Section heading -->
+  <h2 class="h1-responsive font-weight-bold text-center my-5">Our Pizzas</h2>
+  <!-- Section description -->
+  <p class="grey-text text-center w-responsive mx-auto mb-5">Choose your pizzas </p>
+
+  <!-- Grid row -->
+  <div class="row">
+
+    <!-- Grid column -->
+    <div class="col-lg-3 col-md-6 mb-lg-0 mb-4"  *ngFor="let pizza of pizzas">
+      <!-- Card -->
+     
+      <div class="card card-cascade narrower card-ecommerce">
+        <!-- Card image -->
+        <div class="view view-cascade overlay">
+          <img src={{pizza.imagePizza}} class="img-fluid"
+            alt="photo {{pizza.name}}">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <!-- Card image -->
+        <!-- Card content -->
+        <div class="card-body card-body-cascade text-center">
+          <!-- Category & Title -->
+          <h4 class="card-title">
+            <strong>
+              <a href="">{{pizza.name}}</a>
+            </strong>
+          </h4>         
+          <!-- Description -->
+          <div class="card-text" *ngFor="let ingredient of pizza.ingredients">{{ingredient.name}} </div>
+          <!-- Card footer -->
+          <div class="card-footer">
+            <span class="float-left">
+              <strong>{{pizza.price}} €</strong>
+            </span>           
+            <span>
+              <a data-placement="top" title="Add to Cart" (click)="addToCart(pizza)">
+                  <img src="..\assets\pictures\blue_cart.jpg">
+              </a>
+              <a class="active" data-toggle="tooltip" data-placement="top" title="Added to Wishlist">
+                <i class="fa fa-heart ml-3"></i>
+              </a>
+              <div class="crop" style="width: 75px"><span class="fa fa-star"></span></div>
+              
+            </span>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>

@@ -6,6 +6,7 @@ import { LoginComponent } from './user/login/login.component';
 import { LogoutService } from './user/resolver/logout.service';
 import { CartComponent } from './user/cart/cart.component';
 import { ErrorComponent } from './other/error/error.component';
+import { PizzaCustomComponent } from './pizza/pizza-custom/pizza-custom.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full'},
@@ -17,6 +18,31 @@ const routes: Routes = [
   { path: 'logout', component: WelcomeComponent,  resolve: [LogoutService]},
   { path: 'cart', component: CartComponent},
   { path: '**', component: ErrorComponent},
+
+  
+  /* {path: 'pizzas',
+  children: [
+    {
+      path: 'list',
+      component: PizzaListComponent
+    },
+    {
+      path: 'custom',
+      component: PizzaCustomComponent
+    },
+     {
+      path: 'favourite-pizzas',
+      component: FavouritePizzasComponent
+    }, 
+    {
+      path: 'cart',
+      component: CartComponent
+    }
+     {
+      path: 'checkouts',
+      loadChildren: './checkout/checkout.module#CheckoutModule'
+    } 
+  ]}, */
 ];
 
 @NgModule({

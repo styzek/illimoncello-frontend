@@ -4,6 +4,7 @@ import { Ipizza } from 'src/app/domain/ipizza';
 import { Icategory} from 'src/app/domain/icategory';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-pizza-list',
@@ -15,26 +16,26 @@ export class PizzaListComponent implements OnInit {
 pizzas: Ipizza[];
 categories: Icategory[];
 
-  constructor(private touter: Router, private _service: PizzasService) { }
+  constructor(private touter: Router, private _servicePizza: PizzasService, private _serviceCart: CartService) { }
 
 
   ngOnInit() {
 
-    this._service.getProductsAll().subscribe(
+    this._servicePizza.getProductsAll().subscribe(
       resp => {this.pizzas = resp;},
       err => console.log('*** Attention : Il y a eu erreur lors de l\'appel getAll : ' + err));
 
-     this._service.getAllCategory().subscribe(resp => {this.categories = resp;},
+     this._servicePizza.getAllCategory().subscribe(resp => {this.categories = resp;},
       err => console.log('*** Attention : Il y a eu erreur lors de l\'appel getAll : ' + err));
   }
 
   pizzaFilterCategory(namecategory: string)
   {
-    this._service.getPizzaByCategory(namecategory).subscribe(resp => {this.pizzas = resp;},
+    this._servicePizza.getPizzaByCategory(namecategory).subscribe(resp => {this.pizzas = resp;},
       err => console.log('*** Attention : Il y a eu erreur lors de l\'appel getAll : ' + err));
   }
 
   addToCart(pizza: Ipizza) {
-		this._service.addToCart(pizza);
+		this._serviceCart.addToCart(pizza);
   }
 }

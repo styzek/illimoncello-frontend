@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { SignupService } from 'src/app/services/signup.service';
-import { Iusersignup } from 'src/app/domain/iusersignup';
+import { Usersignup } from 'src/app/domain/usersignup';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class InscriptionComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-  user: Iusersignup = {username: '', password: '', name: '', email: '', adress: ''};
+  user: Usersignup = {username: '', password: '', name: '', email: '', adress: ''};
 
   constructor(private formBuilder: FormBuilder, private service: SignupService, private router: Router) { }
 

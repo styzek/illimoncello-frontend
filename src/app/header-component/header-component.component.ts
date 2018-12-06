@@ -1,9 +1,7 @@
-import { Component, OnInit, ApplicationRef, ChangeDetectorRef, NgZone, Input } from '@angular/core';
-import { LoginComponent } from '../user/login/login.component';
-import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
-import { Observable, Subject } from 'rxjs';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { Iuser } from '../domain/iuser';
+import { LoginComponent } from '../user/login/login.component';
+
 
 
 @Component({
@@ -18,11 +16,11 @@ export class HeaderComponentComponent implements OnInit {
 
   currentUser: string;
 
-  constructor(private login: LoginComponent, private authserv: AuthService) {
+  constructor(private authserv: AuthService) {
    }
 
   ngOnInit() {
     this.authserv.isLoggedIn().subscribe(value => this.isLoggedIn = value);
-    this.authserv.currentMessage.subscribe( name => this.currentUser = name);
+    this.authserv.currentMessage.subscribe(name => this.currentUser = name);
   }
  }

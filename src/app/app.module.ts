@@ -13,8 +13,6 @@ import { OtherModule } from './other/other.module';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { Interceptor } from './interceptors/my-jwt-interceptor';
 import { HttpModule } from '@angular/http';
-import { LoginComponent } from './user/login/login.component';
-
 
 @NgModule({
   declarations: [
@@ -32,7 +30,7 @@ import { LoginComponent } from './user/login/login.component';
     FormsModule,
     HttpModule
   ],
-  providers: [AuthService, TokenStorage, LoginComponent,
+  providers: [AuthService, TokenStorage,
 
     {provide: HTTP_INTERCEPTORS,
 

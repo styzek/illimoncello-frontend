@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Ipizza } from '../domain/ipizza';
+import { Pizza } from '../domain/pizza';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +12,15 @@ export class PizzasService {
 
   constructor(private _http: HttpClient) { }
 
-  public getProductsAll(): Observable<Ipizza[]> {
-    return this._http.get<Ipizza[]>(this.URL);
+  public getProductsAll(): Observable<Pizza[]> {
+    return this._http.get<Pizza[]>(this.URL);
   }
 
-  public getProductById(id: number): Observable<Ipizza> {
-    return this._http.get<Ipizza>(this.URL + '/' + id);
+  public getProductById(id: number): Observable<Pizza> {
+    return this._http.get<Pizza>(this.URL + '/' + id);
   }
 
-  public addProduct(p: Ipizza): Observable<any> {
+  public addProduct(p: Pizza): Observable<any> {
     return this._http.post(this.URL, p);
   }
 }

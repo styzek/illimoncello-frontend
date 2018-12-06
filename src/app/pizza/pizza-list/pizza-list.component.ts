@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PizzasService } from 'src/app/services/pizzas.service';
-import { Ipizza } from 'src/app/domain/ipizza';
+import { Pizza } from 'src/app/domain/pizza';
 
 @Component({
   selector: 'app-pizza-list',
@@ -9,7 +9,7 @@ import { Ipizza } from 'src/app/domain/ipizza';
 })
 export class PizzaListComponent implements OnInit {
 
-data: Ipizza[];
+data: Pizza[];
 
   constructor(private _service: PizzasService) { }
 

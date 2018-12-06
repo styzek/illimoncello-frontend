@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { TokenStorage } from '../user/token.storage';
-import { Iuser } from '../domain/iuser';
+import { User } from '../domain/user';
 import { map, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,9 @@ export class AuthService {
   authenticatedUserName = new BehaviorSubject<string>('non connected');
   currentMessage = this.authenticatedUserName.asObservable();
 
-  user: Iuser = {username: '', password: ''};
+  user: User = {username: '', password: ''};
 
-  constructor(private http: HttpClient, private token: TokenStorage) {
+  constructor(private http: HttpClient, private token: TokenStorage, private router: Router) {
   }
 
   attemptAuth(username: string, password: string): Observable<any> {
@@ -26,7 +27,6 @@ export class AuthService {
     return this.http.post<any>('http://localhost:8080/api/token/generate-token', credentials);
   //   .pipe(tap(user => {
   //     this.authenticatedUser.subscribe;
-
   // }));
   }
 
@@ -40,6 +40,25 @@ export class AuthService {
 
   isLoggedIn(): Observable<boolean> {
     return this.isLoginSubject.asObservable();
+  }
+
+  login(username: string, password: string): void {
+    this.attemptAuth(username, password).subscribe(
+      data => {
+        this.token.saveToken(data.token);
+        this.isLoginSubject.next(true);
+        this.changeMessage(username);
+        sessionStorage.setItem('currentuser', username);
+
+        this.router.navigate(['welcome']);
+      }
+    );
+  }
+
+  logout(): void {
+    this.token.signOut;
+    this.isLoginSubject.next(false);
+    sessionStorage.removeItem('currentuser');
   }
 
 }

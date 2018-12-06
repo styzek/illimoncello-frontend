@@ -22,7 +22,7 @@
         </div>
         <div *ngIf="(isLoggedIn)">
             Welcome <i>{{currentUser}}</i>
-            <a class="btn btn-outline-info my-2 my-sm-0 ml-1" role="button" [routerLink]="['/welcome']" (click)="login.logout()">Log out</a>
+            <a class="btn btn-outline-info my-2 my-sm-0 ml-1" role="button" [routerLink]="['/welcome']" (click)="authserv.logout()">Log out</a>
         </div>
     </div>
 </nav>

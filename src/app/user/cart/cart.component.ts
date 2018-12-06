@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PizzasService } from 'src/app/services/pizzas.service';
 import { Ipizza } from 'src/app/domain/ipizza';
 import * as Rx from "rxjs";	
-import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart-pizzas',
@@ -17,7 +16,7 @@ export class CartComponent implements OnInit {
 	messageTitle = 'No Products Found in Cart';
 	messageDescription = 'Please, Add Pizzas to Cart';
 
-	constructor(private _Service: CartService) {}
+	constructor(private _Service: PizzasService) {}
 
 
 

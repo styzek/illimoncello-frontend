@@ -42,18 +42,21 @@ export class AuthService {
       data => {
         this.token.saveToken(data.token);
         this.isLoginSubject.next(true);
-        this.changeMessage(username);
         sessionStorage.setItem('currentuser', username);
-
+        this.changeMessage(username);
+       
         this.router.navigate(['welcome']);
       }
     );
   }
 
   logout(): void {
-    this.token.signOut;
+    this.token.signOut();
+    //this.isLoggedIn = false;
     this.isLoginSubject.next(false);
-    sessionStorage.removeItem('currentuser');
+    window.sessionStorage.removeItem('currentuser');
+    localStorage.clear();
+    
   }
 
   isLoggedIn(): Observable<boolean> {

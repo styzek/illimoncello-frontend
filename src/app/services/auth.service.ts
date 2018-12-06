@@ -23,7 +23,6 @@ export class AuthService {
 
   attemptAuth(username: string, password: string): Observable<any> {
     const credentials = {username: username, password: password};
-    console.log('attempAuth ::');
     return this.http.post<any>('http://localhost:8080/api/token/generate-token', credentials);
   //   .pipe(tap(user => {
   //     this.authenticatedUser.subscribe;
@@ -34,13 +33,9 @@ export class AuthService {
     return !!this.token.getToken();
   }
 
-  changeMessage(message: string) {
+  private changeMessage(message: string) {
     this.authenticatedUserName.next(message);
 }
-
-  isLoggedIn(): Observable<boolean> {
-    return this.isLoginSubject.asObservable();
-  }
 
   login(username: string, password: string): void {
     this.attemptAuth(username, password).subscribe(
@@ -61,4 +56,7 @@ export class AuthService {
     sessionStorage.removeItem('currentuser');
   }
 
+  isLoggedIn(): Observable<boolean> {
+    return this.isLoginSubject.asObservable();
+  }
 }

@@ -21,6 +21,10 @@ export class PizzasService {
 
   public getProductsAll(): Observable<Ipizza[]> {
     return this._http.get<Ipizza[]>(this.URL+'/pizzas');
+	}
+	
+	public getBestPizzasAll(username: String): Observable<Ipizza[]> {
+    return this._http.get<Ipizza[]>(this.URL+'/bestpizzas');
   }
 
   public getAllCategory(): Observable<Icategory[]> {
@@ -35,8 +39,8 @@ export class PizzasService {
     return this._http.get<Ipizza[]>(this.URL + '/pizzasbycategory/' + name);
   }
 
-  public addProduct(p: Ipizza): Observable<any> {
-    return this._http.post(this.URL, p);
+  public addBestPizza(p: Ipizza, username: String): Observable<any> {
+    return this._http.post(this.URL + '/addbestpizza/' + username, p);
   }
 
   	/*
@@ -45,13 +49,7 @@ export class PizzasService {
 
 	// Adding new Pizza to cart db if logged in else window.sessionStorage
 	addToCart(pizza: Ipizza): void {
-/* 		let mamap: HashMap<Number, Ipizza>; 
-		mamap = JSON.parse(window.sessionStorage.getItem('avct_item')) || [];
-		mamap.set(pizza.id, pizza);
-		setTimeout(() => {
-			window.sessionStorage.setItem('avct_item', JSON.stringify(mamap));
-		this.calculateLocalCartPizzaCounts();
-		}, 500); */
+
 	 	let a: Ipizza[];
 		a = JSON.parse(window.sessionStorage.getItem('avct_item')) || [];
 		pizza.numberofpizza = 1;
@@ -73,10 +71,11 @@ export class PizzasService {
 				break;
 			}
 		}
-		// ReAdding the prizzas after remove
+		// ReAdding the pizzas after remove
 		window.sessionStorage.setItem('avct_item', JSON.stringify(pizzas));
 
 		this.calculateLocalCartPizzaCounts();
+		window.location.reload();
 	}
 
 	// Fetching Locat CartsPizzats
@@ -108,7 +107,6 @@ export class PizzasService {
 			 break;
 		 };}
 	 a.push(pizza);
-	 //this.toastrService.wait('Adding Pizza to Cart', 'Pizza Adding to the cart');
 	 setTimeout(() => {
 		 window.sessionStorage.setItem('avct_item', JSON.stringify(a));
 		 this.calculateLocalCartPizzaCounts();
@@ -134,7 +132,6 @@ export class PizzasService {
 			 break;
 		 };}
 	 a.push(pizza);
-	 //this.toastrService.wait('Adding Pizza to Cart', 'Pizza Adding to the cart');
 	 setTimeout(() => {
 		 window.sessionStorage.setItem('avct_item', JSON.stringify(a));
 		 this.calculateLocalCartPizzaCounts();

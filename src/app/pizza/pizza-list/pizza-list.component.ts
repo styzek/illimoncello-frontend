@@ -37,4 +37,9 @@ categories: Icategory[];
   addToCart(pizza: Ipizza) {
 		this._service.addToCart(pizza);
   }
+  
+  addBestPizza(pizza:Ipizza)
+  {
+	  this._service.addBestPizza(pizza, window.sessionStorage.getItem('currentuser'))
+  }
 }

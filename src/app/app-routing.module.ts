@@ -7,11 +7,13 @@ import { LogoutService } from './user/resolver/logout.service';
 import { CartComponent } from './user/cart/cart.component';
 import { ErrorComponent } from './other/error/error.component';
 import { PizzaCustomComponent } from './pizza/pizza-custom/pizza-custom.component';
+import { BestPizzaComponent } from './pizza/pizza-best/pizza-best.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full'},
   { path: 'welcome', component: WelcomeComponent},
   { path: 'pizzas', component: PizzaListComponent},
+  { path: 'bestpizzas', component: BestPizzaComponent},
   // { path: 'pizza/:id', component: },
   // { path: 'add', component: ProductsAddComponent, canActivate: [ProductAddGuard]},
   { path: 'login', component: LoginComponent},

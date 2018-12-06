@@ -13,7 +13,7 @@ export class InscriptionComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-  user: Iusersignup = {username: '', password: '', name: '', email: '', adress:''};
+  user: Iusersignup = {username: '', password: '', name: '', email: '', adress: ''};
 
   constructor(private formBuilder: FormBuilder, private service: SignupService, private router: Router) { }
 
@@ -37,9 +37,9 @@ export class InscriptionComponent implements OnInit {
       if (this.registerForm.invalid) {
           return;
       }
-      
+
       this.service.attemptSignup(this.registerForm.value).subscribe();
-      alert('SUCCESS')
+      alert('SUCCESS');
       this.router.navigate(['welcome']);
   }
 

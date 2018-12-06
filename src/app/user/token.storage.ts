@@ -19,6 +19,6 @@ export class TokenStorage {
   }
 
   public getToken(): string {
-    return sessionStorage.getItem(TOKEN_KEY);
+    return sessionStorage.getItem(TOKEN_KEY) && 'undefined' !== sessionStorage.getItem(TOKEN_KEY) ? sessionStorage.getItem(TOKEN_KEY) : null;
   }
 }

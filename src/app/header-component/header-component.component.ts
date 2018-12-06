@@ -1,6 +1,9 @@
 import { Component, OnInit, ApplicationRef, ChangeDetectorRef, NgZone, Input } from '@angular/core';
 import { LoginComponent } from '../user/login/login.component';
 import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
+import { Observable, Subject } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+import { Iuser } from '../domain/iuser';
 
 
 @Component({
@@ -11,24 +14,15 @@ import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
 export class HeaderComponentComponent implements OnInit {
 
   @Input()
-  isLoggedIn : boolean;
+  isLoggedIn: boolean;
 
-  nameUser: string = localStorage.getItem('currentuser');
-   
+  currentUser: string;
 
-  constructor(private login: LoginComponent, private ref: ChangeDetectorRef, private zone : NgZone) {
-   
-    login.isLoggedIn().subscribe((value) => {
-      this.isLoggedIn = value;
-      
-    });
-    this.zone.run(() => {
-      this.isLoggedIn = this.isLoggedIn;
-      this.nameUser = this.nameUser;
-    });
+  constructor(private login: LoginComponent, private authserv: AuthService) {
    }
 
   ngOnInit() {
+    this.authserv.isLoggedIn().subscribe(value => this.isLoggedIn = value);
+    this.authserv.currentMessage.subscribe( name => this.currentUser = name);
   }
- 
-}
+ }

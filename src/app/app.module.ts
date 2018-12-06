@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { TokenStorage } from './user/token.storage';
 import { AuthService } from 'src/app/services/auth.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -31,9 +31,8 @@ import { LoginComponent } from './user/login/login.component';
     HttpClientModule,
     FormsModule,
     HttpModule
-    
   ],
-  providers: [AuthService, TokenStorage, TokenStorage, LoginComponent,
+  providers: [AuthService, TokenStorage, LoginComponent,
 
     {provide: HTTP_INTERCEPTORS,
 

@@ -11,22 +11,23 @@ import { Observable } from 'rxjs';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  user: Iuser = {username: '', password: ''};
+
   ngOnInit(): void {
-    
+
   }
 
   constructor(private router: Router, private authService: AuthService, private token: TokenStorage) {
   }
 
-  user: Iuser = {username: '', password: ''};
-
   login(): void {
     this.authService.attemptAuth(this.user.username, this.user.password).subscribe(
       data => {
         this.token.saveToken(data.token);
-        localStorage.setItem('currentuser', this.user.username);
-        this.router.navigate(['welcome']);
         this.authService.isLoginSubject.next(true);
+        this.authService.changeMessage(this.user.username);
+        this.router.navigate(['welcome']);
       }
     );
   }
@@ -34,11 +35,5 @@ export class LoginComponent implements OnInit {
   logout (): void {
     this.token.signOut;
     this.authService.isLoginSubject.next(false);
-    localStorage.removeItem('currentuser');
   }
-
-  isLoggedIn() : Observable<boolean> {
-    return this.authService.isLoginSubject.asObservable();
-  }
-
 }

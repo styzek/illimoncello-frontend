@@ -21,7 +21,7 @@
             <a class="btn btn-outline-info my-2 my-sm-0 ml-1" role="button" [routerLink]="['/signup']">Sign up</a>
         </div>
         <div *ngIf="(isLoggedIn)">
-            Welcome <i>{{nameUser}}</i>
+            Welcome <i>{{currentUser}}</i>
             <a class="btn btn-outline-info my-2 my-sm-0 ml-1" role="button" [routerLink]="['/welcome']" (click)="login.logout()">Log out</a>
         </div>
     </div>

@@ -22,7 +22,6 @@ export class Interceptor implements HttpInterceptor {
     return next.handle(authReq).pipe(
         tap(err => {
           if (err instanceof HttpErrorResponse) {
-           
             if (err.status === 401) {
                this.router.navigate(['error']);
             }

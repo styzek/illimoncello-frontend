@@ -8,9 +8,6 @@ import { FormGroup } from '@angular/forms';
 })
 export class SignupService {
 
-  baseUrl: 'http://localhost:8080/home';
-  registerForm: FormGroup;
-
   constructor(private http: HttpClient) {
   }
 

@@ -1,7 +1,7 @@
 export interface Iusersignup {
 
     username: string;
-    password : string;
+    password: string;
     name: string;
     email: string;
     adress: string;

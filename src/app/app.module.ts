@@ -14,7 +14,6 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { Interceptor } from './interceptors/my-jwt-interceptor';
 import { HttpModule } from '@angular/http';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +30,7 @@ import { HttpModule } from '@angular/http';
     FormsModule,
     HttpModule
   ],
-  providers: [AuthService, TokenStorage, TokenStorage,
+  providers: [AuthService, TokenStorage,
 
     {provide: HTTP_INTERCEPTORS,
 

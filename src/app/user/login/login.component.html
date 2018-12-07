@@ -1,34 +1,36 @@
 <div class="container">
-  <h1 class="form-heading">login Form</h1>
-  <div class="login-form">
-      <div class="main-div">
-          <div class="panel">
-              <h2>Admin Login</h2>
-              <p>Please enter your email and password</p>
-          </div>
-          <form id="Login" #f="ngForm" (ngSubmit)="login()">
-
-              <div class="form-group">
-
-                  <input type="text" name="username" [(ngModel)]="user.username" class="form-control" id="username"
-                         placeholder="Username" required #nom="ngModel">
-                  <div class="alert alert-danger" *ngIf="nom.touched && nom.invalid">
-                      Le nom de l'utilisateur est obligatoire
-                  </div>
-              </div>
-
-              <div class="form-group">
-
-                  <input type="password" name="password" [(ngModel)]="user.password" class="form-control"
-                         id="inputPassword" placeholder="Password" required #password="ngModel">
-                  <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
-                      Le mot de passe est obligatoire
-                  </div>
-              </div>
-              
-              <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Login</button>
-
-          </form>
-      </div>
-  </div>
-</div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="login-form">
+                    <div class="main-div">
+                        <form id="Login" #f="ngForm" (ngSubmit)="login()">
+    
+                            <div class="form-group">
+    
+                                <input type="text" name="username" [(ngModel)]="user.username" class="form-control"
+                                       id="username"
+                                       placeholder="Username" required #nom="ngModel">
+                                <div class="alert alert-danger" *ngIf="nom.touched && nom.invalid">
+                                    Le nom de l'utilisateur est obligatoire
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+    
+                                <input type="password" name="password" [(ngModel)]="user.password" class="form-control"
+                                       id="inputPassword" placeholder="Password" required #password="ngModel">
+                                <div class="alert alert-danger" *ngIf="password.touched && password.invalid">
+                                    Le mot de passe est obligatoire
+                                </div>
+                            </div>
+    
+                            <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Login</button>
+                            <a class="ml-3" [routerLink]="['/signup']">Sign up</a>
+    
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Ipizza } from '../domain/ipizza';
-import { Icategory } from '../domain/icategory';
+
+import { Pizza } from '../domain/pizza';
+import { Category } from '../domain/category';
 
 //import { ToastrService } from './toastr.service';
 
@@ -19,38 +20,43 @@ export class PizzasService {
 		
   private URL = 'http://localhost:8080/api/pizza';
 
-  public getProductsAll(): Observable<Ipizza[]> {
-    return this._http.get<Ipizza[]>(this.URL+'/pizzas');
+
+  public getPizzasAll(): Observable<Pizza[]> {
+    return this._http.get<Pizza[]>(this.URL+'/pizzas');
 	}
 	
-	public getBestPizzasAll(username: String): Observable<Ipizza[]> {
-    return this._http.get<Ipizza[]>(this.URL+'/bestpizzas');
+	public getBestPizzasAll(username: String): Observable<Pizza[]> {
+    return this._http.get<Pizza[]>(this.URL+'/bestpizzas');
   }
 
-  public getAllCategory(): Observable<Icategory[]> {
-    return this._http.get<Icategory[]>(this.URL+'/categories');
+  public getAllCategory(): Observable<Category[]> {
+		return this._http.get<Category[]>(this.URL+'/categories');
+	}
+
+  public getProductById(id: number): Observable<Pizza> {
+    return this._http.get<Pizza>(this.URL + '/' + id);
   }
 
-  public getProductById(id: number): Observable<Ipizza> {
-    return this._http.get<Ipizza>(this.URL + '/' + id);
+  public getPizzaByCategory(name:string): Observable<Pizza[]>{
+    return this._http.get<Pizza[]>(this.URL + '/pizzasbycategory/' + name);
   }
 
-  public getPizzaByCategory(name:string): Observable<Ipizza[]>{
-    return this._http.get<Ipizza[]>(this.URL + '/pizzasbycategory/' + name);
-  }
-
-  public addBestPizza(p: Ipizza, username: String): Observable<any> {
-    return this._http.post(this.URL + '/addbestpizza/' + username, p);
-  }
+  public addBestPizza(p: Pizza, username: String): Observable<any> {
+		return this._http.post(this.URL + '/addbestpizza/' + username, p);
+	}
+ 
+	// public addProduct(p: Pizza): Observable<any> {
+  //   return this._http.post(this.URL, p);
+  // }
 
   	/*
    ----------  Cart Product Function  ----------
   */
 
 	// Adding new Pizza to cart db if logged in else window.sessionStorage
-	addToCart(pizza: Ipizza): void {
+	addToCart(pizza: Pizza): void {
 
-	 	let a: Ipizza[];
+	 	let a: Pizza[];
 		a = JSON.parse(window.sessionStorage.getItem('avct_item')) || [];
 		pizza.numberofpizza = 1;
 		a.push(pizza);
@@ -62,8 +68,8 @@ export class PizzasService {
 	}
 
 	// Removing cart from local
-	removeLocalCartPizza(pizza: Ipizza) {
-		const pizzas: Ipizza[] = JSON.parse(window.sessionStorage.getItem('avct_item'));
+	removeLocalCartPizza(pizza: Pizza) {
+		const pizzas: Pizza[] = JSON.parse(window.sessionStorage.getItem('avct_item'));
 
 		for (let i = 0; i < pizzas.length; i++) {
 			if (pizzas[i].id === pizza.id) {
@@ -79,8 +85,8 @@ export class PizzasService {
 	}
 
 	// Fetching Locat CartsPizzats
-	getLocalCartPizzas(): Ipizza[] {
-		const pizzas: Ipizza[] = JSON.parse(window.sessionStorage.getItem('avct_item')) || [];
+	getLocalCartPizzas(): Pizza[] {
+		const pizzas: Pizza[] = JSON.parse(window.sessionStorage.getItem('avct_item')) || [];
 
 		return pizzas;
 	}
@@ -91,9 +97,9 @@ export class PizzasService {
 	}
 
 	//add a number of pizza in the cart
-	addNumberOfPizzaToCart(pizza: Ipizza): void {
+	addNumberOfPizzaToCart(pizza: Pizza): void {
 		let numberofpizzalist: Number;
-		let a: Ipizza[];
+		let a: Pizza[];
 	 a = JSON.parse(window.sessionStorage.getItem('avct_item')) || [];
 
 	 if(a.indexOf(pizza) !== -1){}
@@ -113,9 +119,9 @@ export class PizzasService {
 	 }, 500); 
 	}
 
-	substractNumberOfPizzaToCart(pizza: Ipizza): void {
+	substractNumberOfPizzaToCart(pizza: Pizza): void {
 		let numberofpizzalist: Number;
-		let a: Ipizza[];
+		let a: Pizza[];
 	 a = JSON.parse(window.sessionStorage.getItem('avct_item')) || [];
 
 		if(pizza.numberofpizza === 1){this.removeLocalCartPizza(pizza);}

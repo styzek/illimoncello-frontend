@@ -52,11 +52,8 @@ export class AuthService {
 
   logout(): void {
     this.token.signOut();
-    //this.isLoggedIn = false;
     this.isLoginSubject.next(false);
     window.sessionStorage.removeItem('currentuser');
-    localStorage.clear();
-    
   }
 
   isLoggedIn(): Observable<boolean> {

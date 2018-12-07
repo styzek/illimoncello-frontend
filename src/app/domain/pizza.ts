@@ -2,7 +2,7 @@ import { Category } from "./category";
 import { Ingredient } from "./ingredient";
 
 export interface Pizza {
-    id: number;
+    id: Number;
     name: string;
     price: number;
     month_promo: boolean;
@@ -10,5 +10,5 @@ export interface Pizza {
     category: Category;
     numberofpizza: Number;
     ingredients: Ingredient[];
-    imagePizza:string;
+    imagePizza: string;
 }

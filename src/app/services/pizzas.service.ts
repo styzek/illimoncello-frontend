@@ -106,12 +106,13 @@ export class PizzasService {
 	 for (let i = 0; i < a.length; i++) {
 		 if (a[i].id === pizza.id) {
 			 numberofpizzalist = +a[i].numberofpizza + +1;
-			 console.log(numberofpizzalist)
+			 console.log(numberofpizzalist);
 			 pizza.numberofpizza = numberofpizzalist;
-			 console.log(pizza.numberofpizza)
+			 console.log(pizza.numberofpizza);
 			 a.splice(i, 1);
 			 break;
-		 };}
+	 }
+	}
 	 a.push(pizza);
 	 setTimeout(() => {
 		 window.sessionStorage.setItem('avct_item', JSON.stringify(a));
@@ -131,9 +132,9 @@ export class PizzasService {
 	 for (let i = 0; i < a.length; i++) {
 		 if (a[i].id === pizza.id) {
 			 numberofpizzalist = +a[i].numberofpizza - +1;
-			 console.log(numberofpizzalist)
+			 console.log(numberofpizzalist);
 			 pizza.numberofpizza = numberofpizzalist;
-			 console.log(pizza.numberofpizza)
+			 console.log(pizza.numberofpizza);
 			 a.splice(i, 1);
 			 break;
 		 };}

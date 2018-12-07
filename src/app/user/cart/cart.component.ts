@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PizzasService } from 'src/app/services/pizzas.service';
-import { Ipizza } from 'src/app/domain/ipizza';
+import { Pizza } from 'src/app/domain/pizza';
 import * as Rx from "rxjs";	
 
 @Component({
@@ -9,7 +9,7 @@ import * as Rx from "rxjs";
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartPizzas: Ipizza[];
+  cartPizzas: Pizza[];
 	showDataNotFound = true;
 
 	// Not Found Message
@@ -26,7 +26,7 @@ export class CartComponent implements OnInit {
 		this.getCartPizza();
 	}
 
-	removeCartPizza(pizza: Ipizza) {
+	removeCartPizza(pizza: Pizza) {
 		this._Service.removeLocalCartPizza(pizza);
 
 		// Recalling
@@ -37,9 +37,11 @@ export class CartComponent implements OnInit {
 		this.cartPizzas = this._Service.getLocalCartPizzas();
 	}
 
-	addNumberOfPizzaToCart(pizza: Ipizza)
-	{this._Service.addNumberOfPizzaToCart(pizza)}
+	addNumberOfPizzaToCart(pizza: Pizza){
+		this._Service.addNumberOfPizzaToCart(pizza);
+	}
 	
-	substractNumberOfPizzaToCart(pizza: Ipizza)
-	{this._Service.substractNumberOfPizzaToCart(pizza)}
+	substractNumberOfPizzaToCart(pizza: Pizza){
+		this._Service.substractNumberOfPizzaToCart(pizza);
+	}
 }

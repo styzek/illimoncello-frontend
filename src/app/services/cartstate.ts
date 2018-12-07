@@ -1,8 +1,8 @@
-import { Ipizza } from "../domain/ipizza";
+import { Pizza } from "../domain/pizza";
 
 
 export interface CartState {
  loaded: boolean;
- pizzas : Ipizza[];
+ pizzas: Pizza[];
 
 }

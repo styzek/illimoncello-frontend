@@ -1,5 +1,5 @@
 
-import { Ipizza } from 'src/app/domain/ipizza';
+import { Pizza } from 'src/app/domain/pizza';
 import { OnInit, Component } from '@angular/core';
 import { PizzasService } from 'src/app/services/pizzas.service';
 
@@ -9,7 +9,7 @@ import { PizzasService } from 'src/app/services/pizzas.service';
 	styleUrls: [ './pizza-best.component.scss' ]
 })
 export class BestPizzaComponent implements OnInit {
-	bestPizzas: Ipizza[];
+	bestPizzas: Pizza[];
 	
 	constructor(private _pizzaService: PizzasService) {}
 
@@ -19,7 +19,7 @@ export class BestPizzaComponent implements OnInit {
 			err => console.log('*** Attention : Il y a eu erreur lors de l\'appel getAll : ' + err));
 	}
 
-	addToCart(pizza: Ipizza) {
+	addToCart(pizza: Pizza) {
 		this._pizzaService.addToCart(pizza);
   }
 }

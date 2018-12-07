@@ -20,24 +20,23 @@ categories: Category[];
 
     this._service.getPizzasAll().subscribe(
       resp => {this.pizzas = resp;},
-      err => console.log('*** Attention : Il y a eu erreur lors de l\'appel getAll : ' + err));
+      err => console.log('*** Attention : Il y a eu erreur lors de l\'appel getPizzasAll : ' + err));
 
      this._service.getAllCategory().subscribe(resp => {this.categories = resp;},
-      err => console.log('*** Attention : Il y a eu erreur lors de l\'appel getAll : ' + err));
+      err => console.log('*** Attention : Il y a eu erreur lors de l\'appel getAllCategory : ' + err));
   }
 
   pizzaFilterCategory(namecategory: string)
   {
     this._service.getPizzaByCategory(namecategory).subscribe(resp => {this.pizzas = resp;},
-      err => console.log('*** Attention : Il y a eu erreur lors de l\'appel getAll : ' + err));
+      err => console.log('*** Attention : Il y a eu erreur lors de l\'appel getPizzaByCategory : ' + err));
   }
 
   addToCart(pizza: Pizza) {
 		this._service.addToCart(pizza);
   }
   
-  addBestPizza(pizza: Pizza)
-  {
-	  this._service.addBestPizza(pizza, window.sessionStorage.getItem('currentuser'))
+  addBestPizza(pizza: Pizza) {
+	  this._service.addBestPizza(pizza, window.sessionStorage.getItem('currentuser'));
   }
 }

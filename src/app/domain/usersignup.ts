@@ -1,8 +1,10 @@
-export interface Usersignup {
+export class Usersignup {
 
-    username: string;
-    password: string;
-    name: string;
-    email: string;
-    adress: string;
+    constructor(public username = '',
+    public password = '',
+    public email = '',
+    public name = '',
+    public street = '',
+    public city = '',
+    public zip?: Number) {}
 }

@@ -1,3 +1,40 @@
-<p>
-  pizza-custom works!
-</p>
+<form id="Login" #f="ngForm" (ngSubmit)="onSubmit()">
+    <div class="ui-g">
+        <div id="container" class="twocolumns ui-g-12 ui-md-6 ui-g-nopad drag-column">
+            <ul style="margin:0;padding:0">
+                <li *ngFor="let i of availableIngredients;" class="ui-helper-clearfix" pDraggable="ingredients"
+                    (onDragStart)="dragStart($event,i)" (onDragEnd)="dragEnd($event)">
+                    <i class="fa fa-arrows fa-2x" style="float:right;margin-top:8px"></i>
+                    <div style="margin:8px 0 0 8px;float:left">{{i.name}}</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="ui-g-12 ui-md-6 drop-column" 
+             pDroppable="ingredients"
+             (onDrop)="drop($event)" 
+             [ngClass]="{'ui-highlight-car':draggedIngredient}">
+            <p-table [value]="selectedIngredients">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>ID</th>
+                    <th>name</th>
+                    <th>Price</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-ingredient>
+                    <tr>
+                        <td>{{ingredient.id}}</td>
+                        <td>{{ingredient.name}}</td>
+                        <td>{{ingredient.unit_price}} €</td>
+                        <button (click)="deleteItemClicked( ingredient)" pButton type="button" icon="pi pi-trash"
+                                class="ui-button-danger"></button>
+
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+    <button pButton type="submit" label="Success" class="ui-button-success"></button>
+</form>
+

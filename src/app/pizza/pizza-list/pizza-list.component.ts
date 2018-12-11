@@ -3,6 +3,7 @@ import { PizzasService } from 'src/app/services/pizzas.service';
 import { Pizza } from 'src/app/domain/pizza';
 import { Category } from 'src/app/domain/category';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 @Component({
   selector: 'app-pizza-list',
@@ -14,7 +15,7 @@ export class PizzaListComponent implements OnInit {
 pizzas: Pizza[];
 categories: Category[];
 
-  constructor(private touter: Router, private _service: PizzasService) { }
+  constructor(private router: Router, private _service: PizzasService, private messageService : MessageService) { }
 
   ngOnInit() {
 
@@ -33,10 +34,15 @@ categories: Category[];
   }
 
   addToCart(pizza: Pizza) {
-		this._service.addToCart(pizza);
+    this._service.addToCart(pizza);
+    this.messageService.add({key: 'myKey1', severity:'success', summary: 'Success', detail: 'Pizza added to cart'});
   }
   
   addBestPizza(pizza: Pizza) {
 	  this._service.addBestPizza(pizza, window.sessionStorage.getItem('currentuser'));
   }
+
+  handleClick() {
+    this.router.navigate(['/pizzacustom']);
+}
 }

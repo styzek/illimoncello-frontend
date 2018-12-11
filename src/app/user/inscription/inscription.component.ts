@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class InscriptionComponent implements OnInit {
   registerForm: FormGroup;
-  submitted = false;
 
   user: Usersignup = {username: '', password: '', name: '', email: '', adress: ''};
 
@@ -31,8 +30,6 @@ export class InscriptionComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
-      this.submitted = true;
-
       // stop here if form is invalid
       if (this.registerForm.invalid) {
           return;

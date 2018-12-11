@@ -2,11 +2,11 @@
  
 <div class="container">
     <div class="row">
-<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Choose your category
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" (click)='ngOnInit()'>All</a>
       <a class="dropdown-item" *ngFor="let category of categories" (click)='pizzaFilterCategory(category.name)'>{{category.name}}</a>
     </div>
@@ -14,8 +14,11 @@
   </div>
   </div>
 
+
+ 
+  <p-button label="Create your pizza" class="float-right mr-5" styleClass="ui-button-info" (onClick)="handleClick($event)"></p-button>
   
-  
+  <p-toast position="top" [style]="{marginTop: '55px'}" key="myKey1" life ="'200ms'" [showTransitionOptions]="'100ms'" [hideTransitionOptions]="'100ms'"></p-toast>
 <!-- Section: Products v.1 -->
 <section class="text-center my-5">
 

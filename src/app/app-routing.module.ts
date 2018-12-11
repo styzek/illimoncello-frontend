@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent},
   { path: 'pizzas', component: PizzaListComponent},
   { path: 'bestpizzas', component: BestPizzaComponent},
+  { path: 'pizzacustom', component: PizzaCustomComponent},
   // { path: 'pizza/:id', component: },
   // { path: 'add', component: ProductsAddComponent, canActivate: [ProductAddGuard]},
   { path: 'login', component: LoginComponent},

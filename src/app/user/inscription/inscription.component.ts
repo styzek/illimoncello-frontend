@@ -39,7 +39,7 @@ function emailMatcher(c: AbstractControl): { [key: string]: boolean } | null {
     ngOnInit() {
       this.customerForm = this.fb.group({
         name: ['', [Validators.required, Validators.minLength(3)]],
-        birthdate:[''],
+        
         username: ['', [Validators.required, Validators.minLength(3),Validators.maxLength(50)]],
         password: ['', [Validators.required, Validators.minLength(3),Validators.maxLength(50)]],
         street: ['', Validators.required],

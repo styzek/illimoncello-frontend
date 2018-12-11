@@ -13,6 +13,11 @@ import { OtherModule } from './other/other.module';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { Interceptor } from './interceptors/my-jwt-interceptor';
 import { HttpModule } from '@angular/http';
+import { ToastModule } from 'primeng/toast';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessageService } from 'primeng/components/common/messageservice';
+import {DragDropModule} from 'primeng/dragdrop';
+
 
 @NgModule({
   declarations: [
@@ -28,9 +33,12 @@ import { HttpModule } from '@angular/http';
     OtherModule,
     HttpClientModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    ToastModule,
+    BrowserAnimationsModule,
+    DragDropModule
   ],
-  providers: [AuthService, TokenStorage,
+  providers: [AuthService, TokenStorage, MessageService,
 
     {provide: HTTP_INTERCEPTORS,
 

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Pizza } from '../domain/pizza';
 import { Category } from '../domain/category';
+import { Ingredient } from '../domain/ingredient';
 
 //import { ToastrService } from './toastr.service';
 
@@ -23,6 +24,10 @@ export class PizzasService {
 
   public getPizzasAll(): Observable<Pizza[]> {
     return this._http.get<Pizza[]>(this.URL+'/pizzas');
+	}
+
+	public getIngredientsAll(): Observable<Ingredient[]> {
+    return this._http.get<Ingredient[]>(this.URL+'/ingredients');
 	}
 	
 	public getBestPizzasAll(username: String): Observable<Pizza[]> {
@@ -47,7 +52,13 @@ export class PizzasService {
  
 	// public addProduct(p: Pizza): Observable<any> {
   //   return this._http.post(this.URL, p);
-  // }
+	// }
+	
+	addPizzaCustom(ingredients: Ingredient[] ): Observable<any> {
+    
+    return this._http.post<any>('http://localhost:8080/api/pizza/addPizzaCustom', ingredients);
+  }
+
 
   	/*
    ----------  Cart Product Function  ----------

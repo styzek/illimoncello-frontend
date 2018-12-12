@@ -67,8 +67,8 @@ export class AuthService {
     return this.http.get<Pizza[]>(this.URL + '/bestpizzas/' + name);
   }
 
-  removeBestPizza(pizza: Pizza[], name: string): Observable<Pizza> {
-    return this.http.post<any>(this.URL + '/removeBestPizza/' + name, pizza);
+  removeBestPizza(pizza: Pizza[], name: string): Observable<Pizza[]>{
+    return this.http.post<Pizza[]>(this.URL + '/removebestpizza/' + name, pizza);
   }
 
 }

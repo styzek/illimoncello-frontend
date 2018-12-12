@@ -65,7 +65,7 @@ pizzaFav: Pizza[];
       this.pizzaFav.splice(index, 1);
     }
 
-    this.authserv.removeBestPizza(this.pizzaFav, sessionStorage.getItem('currentuser'));
+    this.authserv.removeBestPizza(this.pizzaFav, sessionStorage.getItem('currentuser')).subscribe(resp => this.pizzaFav = resp);
   
     this.messageService.add({key: 'myKey1', severity:'warn', summary: 'Info', detail: 'Pizza removed from favorites'});
   }

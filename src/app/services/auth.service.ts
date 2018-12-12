@@ -5,6 +5,7 @@ import { TokenStorage } from '../user/token.storage';
 import { User } from '../domain/user';
 import { map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Pizza } from '../domain/pizza';
 
 @Injectable({
   providedIn: 'root'
@@ -12,25 +13,24 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
-
+  pizzaFav : Pizza[];
   authenticatedUserName = new BehaviorSubject<string>('non connected');
   currentMessage = this.authenticatedUserName.asObservable();
 
+  private URL = 'http://localhost:8080/api/pizza';
+
   user: User = {username: '', password: ''};
 
-  constructor(private http: HttpClient, private token: TokenStorage, private router: Router) {
+  constructor(private http: HttpClient, private tokenService: TokenStorage, private router: Router) {
   }
 
   attemptAuth(username: string, password: string): Observable<any> {
     const credentials = {username: username, password: password};
     return this.http.post<any>('http://localhost:8080/api/token/generate-token', credentials);
-  //   .pipe(tap(user => {
-  //     this.authenticatedUser.subscribe;
-  // }));
   }
 
   private hasToken(): boolean {
-    return !!this.token.getToken();
+    return !!this.tokenService.getToken();
   }
 
   private changeMessage(message: string) {
@@ -40,23 +40,35 @@ export class AuthService {
   login(username: string, password: string): void {
     this.attemptAuth(username, password).subscribe(
       data => {
-        this.token.saveToken(data.token);
+        this.tokenService.saveToken(data.token);
         this.isLoginSubject.next(true);
         sessionStorage.setItem('currentuser', username);
         this.changeMessage(username);
-       
+        this.getUserFavPizza(username).subscribe(value => this.pizzaFav = value);
+        sessionStorage.setItem('favPizzas', JSON.stringify(this.pizzaFav));
         this.router.navigate(['welcome']);
       }
     );
   }
 
   logout(): void {
-    this.token.signOut();
+    this.tokenService.signOut();
     this.isLoginSubject.next(false);
     window.sessionStorage.removeItem('currentuser');
+    this.pizzaFav = [];
+    window.sessionStorage.removeItem('favPizzas');
   }
 
   isLoggedIn(): Observable<boolean> {
     return this.isLoginSubject.asObservable();
   }
+
+  getUserFavPizza(name:string): Observable<Pizza[]>{
+    return this.http.get<Pizza[]>(this.URL + '/bestpizzas/' + name);
+  }
+
+  removeBestPizza(pizza: Pizza[], name: string): Observable<Pizza> {
+    return this.http.post<any>(this.URL + '/removeBestPizza/' + name, pizza);
+  }
+
 }

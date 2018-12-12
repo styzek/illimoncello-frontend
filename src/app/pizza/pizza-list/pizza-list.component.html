@@ -22,6 +22,52 @@
 <!-- Section: Products v.1 -->
 <section class="text-center my-5">
 
+    <h2 class="h1-responsive font-weight-bold text-center my-5">Your favorite pizzas</h2>
+
+    <div *ngIf="(isLoggedIn)" class="row">
+      
+        <!-- Grid column -->
+        <div class="col-lg-3 col-md-6 mb-lg-0 mb-4"  *ngFor="let pizza of pizzaFav">
+          <!-- Card -->
+         
+          <div class="card card-cascade narrower card-ecommerce">
+            <!-- Card image -->
+            <div class="view view-cascade overlay">
+              <img src={{pizza.imagePizza}} class="img-fluid"
+                alt="photo {{pizza.name}}">
+              <a>
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!-- Card image -->
+            <!-- Card content -->
+            <div class="card-body card-body-cascade text-center">
+              <!-- Category & Title -->
+              <h4 class="card-title">
+                <strong>
+                  <a href="">{{pizza.name}}</a>
+                </strong>
+              </h4>         
+              <!-- Description -->
+              <div class="card-text" *ngFor="let ingredient of pizza.ingredients">{{ingredient.name}} </div>
+              <!-- Card footer -->
+              <div class="card-footer">
+                <span class="float-left">
+                  <strong>{{pizza.price}} €</strong>
+                </span>           
+                
+                <div>
+                <button class="float-left ml-2" pButton type="button" (click)= "addToCart(pizza)" icon="pi pi-shopping-cart" iconPos="left" label="Add to cart"></button>
+                
+                <button pButton type="button" (click)="removeBestPizza(pizza)" icon="pi pi-times" iconPos="right" label="Remove"></button>
+                
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
   <!-- Section heading -->
   <h2 class="h1-responsive font-weight-bold text-center my-5">Our Pizzas</h2>
   <!-- Section description -->
@@ -60,17 +106,21 @@
               <strong>{{pizza.price}} €</strong>
             </span>           
             <span>
-              <a data-placement="top" title="Add to Cart" (click)="addToCart(pizza)">
-                  <img src="..\assets\pictures\blue_cart.jpg">
-              </a>
-              <a class="active" data-toggle="tooltip" data-placement="top" title="Added to Wishlist">
+              <!-- <a data-placement="top" title="Add to Cart" (click)="addToCart(pizza)">
+                  
+              </a> -->
+              <!-- <a class="active" data-toggle="tooltip" data-placement="top" title="Added to Wishlist">
                 <i class="fa fa-heart ml-3"></i>
-              </a>
-              <div class="crop" style="width: 75px"><span class="fa fa-star"></span></div>
+              </a> -->
+              <!-- <div class="crop" style="width: 75px"><span class="fa fa-star"></span></div> -->
               
             </span>
-            <span><button (click)= "addBestPizza()">Add Best Pizza</button></span>
+            <div>
+            <button class="float-left ml-2" pButton type="button" (click)= "addToCart(pizza)" icon="pi pi-shopping-cart" iconPos="left" label="Add to cart"></button>
             
+            <button pButton type="button" [disabled]="!(isLoggedIn)" (click)="addBestPizza(pizza)" icon="pi pi-star" iconPos="right" label="Favorite"></button>
+            
+          </div>
           </div>
         </div>
       </div>

@@ -46,9 +46,11 @@ export class PizzasService {
     return this._http.get<Pizza[]>(this.URL + '/pizzasbycategory/' + name);
   }
 
-  public addBestPizza(p: Pizza, username: String): Observable<any> {
-		return this._http.post(this.URL + '/addbestpizza/' + username, p);
+
+	public addBestPizza(pizza: Pizza, name: String): Observable<String> {
+    return this._http.post<any>(this.URL+'/addbestpizza/'+ name, pizza);
 	}
+  
  
 	// public addProduct(p: Pizza): Observable<any> {
   //   return this._http.post(this.URL, p);

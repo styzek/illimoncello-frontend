@@ -1,4 +1,4 @@
-<form id="Login" #f="ngForm" (ngSubmit)="onSubmit()">
+<form id="PizzaParty" #f="ngForm" (ngSubmit)="onSubmit()">
     <div class="ui-g">
         <div id="container" class="twocolumns ui-g-12 ui-md-6 ui-g-nopad drag-column">
             <ul class="list-unstyled" style="margin:0;padding:0">
@@ -20,6 +20,7 @@
                         <th>ID</th>
                         <th>name</th>
                         <th>Price</th>
+                        <th>Number</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-ingredient>
@@ -27,6 +28,9 @@
                         <td>{{ingredient.id}}</td>
                         <td>{{ingredient.name}}</td>
                         <td>{{ingredient.unit_price}} €</td>
+                        <td>{{ingredient.numberIngredient}}</td>
+                        <span><button type="button" class="btn btn-success" (click)="addNumberOfIngredientPizzaParty(ingredient)">+</button></span>
+                        <span><button type="button" class="btn btn-danger" (click)="substractNumberOfIngredientPizzaParty(ingredient)">-</button></span>
                         <button (click)="deleteItemClicked( ingredient)" pButton type="button" icon="pi pi-trash"
                                 class="ui-button-danger"></button>
 

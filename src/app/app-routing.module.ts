@@ -8,6 +8,7 @@ import { ErrorComponent } from './other/error/error.component';
 import { PizzaCustomComponent } from './pizza/pizza-custom/pizza-custom.component';
 import { BestPizzaComponent } from './pizza/pizza-best/pizza-best.component';
 import { InscriptionComponent } from './user/inscription/inscription.component';
+import { PizzaPartyComponent } from './pizza/pizza-party/pizza-party.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full'},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'pizzas', component: PizzaListComponent},
   { path: 'bestpizzas', component: BestPizzaComponent},
   { path: 'pizzacustom', component: PizzaCustomComponent},
+  {path: 'pizzaparty', component: PizzaPartyComponent},
   // { path: 'pizza/:id', component: },
   // { path: 'add', component: ProductsAddComponent, canActivate: [ProductAddGuard]},
   { path: 'login', component: LoginComponent},

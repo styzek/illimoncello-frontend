@@ -5,6 +5,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { CartComponent } from './cart/cart.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   declarations: [LoginComponent, InscriptionComponent, CartComponent],
@@ -12,7 +13,8 @@ import { AppRoutingModule } from '../app-routing.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CalendarModule
   ]
 })
 export class UserModule { }

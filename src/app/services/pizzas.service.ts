@@ -54,11 +54,13 @@ export class PizzasService {
   //   return this._http.post(this.URL, p);
 	// }
 	
-	addPizzaCustom(ingredients: Ingredient[] ): Observable<any> {
-    
-    return this._http.post<any>('http://localhost:8080/api/pizza/addPizzaCustom', ingredients);
+	addPizzaCustom(ingredients: Ingredient[] ): Observable<Pizza> {
+    return this._http.post<Pizza>('http://localhost:8080/api/pizza/setPizzaCustomtoCart', ingredients);
   }
 
+  addPizzaParty(ingredients: Ingredient[] ): Observable<Pizza> {
+    return this._http.post<Pizza>('http://localhost:8080/api/pizza/setPizzaPartytoCart', ingredients);
+	}
 
   	/*
    ----------  Cart Product Function  ----------
@@ -66,17 +68,46 @@ export class PizzasService {
 
 	// Adding new Pizza to cart db if logged in else window.sessionStorage
 	addToCart(pizza: Pizza): void {
-
+		let numberofpizzalist: Number;
 	 	let a: Pizza[];
 		a = JSON.parse(window.sessionStorage.getItem('avct_item')) || [];
 		pizza.numberofpizza = 1;
+		console.log(JSON.stringify(pizza.ingredients) + JSON.stringify( pizza.id) + JSON.stringify( pizza.name));
+
+		if(a.indexOf(pizza) !== -1){}
+		for (let i = 0; i < a.length; i++) {
+			if ((JSON.stringify(a[i].ingredients) + JSON.stringify(a[i].id) + JSON.stringify(a[i].name)) === (JSON.stringify(pizza.ingredients) + JSON.stringify(pizza.id) + JSON.stringify(pizza.name))) {
+				numberofpizzalist = +a[i].numberofpizza + +1;
+				console.log(numberofpizzalist);
+				pizza.numberofpizza = numberofpizzalist;
+				console.log(pizza.numberofpizza);
+				a.splice(i, 1);
+				break;
+		}
+	 }
+
 		a.push(pizza);
+
+
 		//this.toastrService.wait('Adding Pizza to Cart', 'Pizza Adding to the cart');
 		setTimeout(() => {
 			window.sessionStorage.setItem('avct_item', JSON.stringify(a));
 			this.calculateLocalCartPizzaCounts();
 		}, 500); 
 	}
+
+	/* addToCartPizzaCustAndParty(pizza: Pizza): void {
+	 	let a: Pizza[];
+		a = JSON.parse(window.sessionStorage.getItem('avct_item')) || [];
+		pizza.numberofpizza = 1;
+		a.push(pizza);
+
+		//this.toastrService.wait('Adding Pizza to Cart', 'Pizza Adding to the cart');
+		setTimeout(() => {
+			window.sessionStorage.setItem('avct_item', JSON.stringify(a));
+			this.calculateLocalCartPizzaCounts();
+		}, 500); 
+	} */
 
 	// Removing cart from local
 	removeLocalCartPizza(pizza: Pizza) {
@@ -115,7 +146,7 @@ export class PizzasService {
 
 	 if(a.indexOf(pizza) !== -1){}
 	 for (let i = 0; i < a.length; i++) {
-		 if (a[i].id === pizza.id) {
+		if ((JSON.stringify(a[i].ingredients) + JSON.stringify(a[i].id) + JSON.stringify(a[i].name)) === (JSON.stringify(pizza.ingredients) + JSON.stringify(pizza.id) + JSON.stringify(pizza.name))) {
 			 numberofpizzalist = +a[i].numberofpizza + +1;
 			 console.log(numberofpizzalist);
 			 pizza.numberofpizza = numberofpizzalist;
@@ -141,7 +172,7 @@ export class PizzasService {
 
 	 if(a.indexOf(pizza) !== -1){}
 	 for (let i = 0; i < a.length; i++) {
-		 if (a[i].id === pizza.id) {
+		if ((JSON.stringify(a[i].ingredients) + JSON.stringify(a[i].id) + JSON.stringify(a[i].name)) === (JSON.stringify(pizza.ingredients) + JSON.stringify(pizza.id) + JSON.stringify(pizza.name))) {
 			 numberofpizzalist = +a[i].numberofpizza - +1;
 			 console.log(numberofpizzalist);
 			 pizza.numberofpizza = numberofpizzalist;

@@ -6,11 +6,11 @@ import { PizzasService } from 'src/app/services/pizzas.service';
 import { Pizza } from 'src/app/domain/pizza';
 
 @Component({
-  selector: 'app-pizza-custom',
-  templateUrl: './pizza-custom.component.html',
-  styleUrls: ['./pizza-custom.component.css']
+  selector: 'app-pizza-party',
+  templateUrl: './pizza-party.component.html',
+  styleUrls: ['./pizza-party.component.css']
 })
-export class PizzaCustomComponent implements OnInit {
+export class PizzaPartyComponent implements OnInit {
 
   pizza: Pizza;
   pizzas: Pizza[];
@@ -37,10 +37,10 @@ export class PizzaCustomComponent implements OnInit {
 }
 
   onSubmit() {
-    this._service.addPizzaCustom(this.selectedIngredients).subscribe(resp => this._service.addToCart(this.pizza = resp));
-      this.router.navigate(['welcome']);
+     this._service.addPizzaParty(this.selectedIngredients).subscribe(resp => this._service.addToCart(this.pizza = resp));
+     this.router.navigate(['welcome']);
   }
-
+ 
   dragStart(event,ingredient: Ingredient) {
     this.draggedIngredient = ingredient;
 }
@@ -70,6 +70,7 @@ findIndex(ingredient: Ingredient) {
 }
 
 deleteItemClicked(ingredient: Ingredient) {
+  ingredient.numberIngredient = 1;
   const key = this.selectedIngredients.indexOf(ingredient, 0);
 
   if ( key > -1){
@@ -78,6 +79,48 @@ deleteItemClicked(ingredient: Ingredient) {
 
   this.availableIngredients.push(ingredient);
 
+}
+
+addNumberOfIngredientPizzaParty(ingredient: Ingredient)
+{
+  let numberofingredientlist: number;
+  let a: Ingredient[];
+ a = this.selectedIngredients;
+
+ if(a.indexOf(ingredient) !== -1){}
+ for (let i = 0; i < a.length; i++) {
+   if (a[i].id === ingredient.id) {
+    numberofingredientlist = +a[i].numberIngredient + +1;
+     console.log(numberofingredientlist);
+     ingredient.numberIngredient = numberofingredientlist;
+     console.log(ingredient.numberIngredient);
+     a.slice(i, 1);
+     break;
+ }
+}
+}
+
+substractNumberOfIngredientPizzaParty(ingredient: Ingredient)
+{
+  let numberofingredientlist: number;
+  let a: Ingredient[];
+ a = this.selectedIngredients;
+
+ if(ingredient.numberIngredient === 1){ 
+  this.deleteItemClicked(ingredient);}
+		else{
+ if(a.indexOf(ingredient) !== -1){}
+ for (let i = 0; i < a.length; i++) {
+   if (a[i].id === ingredient.id) {
+    numberofingredientlist = +a[i].numberIngredient - +1;
+     console.log(numberofingredientlist);
+     ingredient.numberIngredient = numberofingredientlist;
+     console.log(ingredient.numberIngredient);
+     a.slice(i, 1);
+     break;
+ }
+}
+}
 }
 
 }

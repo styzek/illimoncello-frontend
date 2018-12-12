@@ -56,6 +56,32 @@
                 </span>
               </div>
             </div>
+
+            <div class="form-group row mb-2">
+              <label class="col-md-2 col-form-label"
+                     for="passwordId">Password</label>
+              <div class="col-md-8">
+                <input class="form-control"
+                       id="passwordId"
+                       type="password"
+                       placeholder="Password (required)"
+                       formControlName="password"
+                       [ngClass]="{'is-invalid': (customerForm.get('password').touched ||
+                                                  customerForm.get('password').dirty) &&
+                                                  !customerForm.get('password').valid }" />
+                <span class="invalid-feedback">
+                  <span *ngIf="customerForm.get('password').errors?.required">
+                    Please enter your password.
+                  </span>
+                  <span *ngIf="customerForm.get('password').errors?.minlength">
+                        The password must be longer than 3 characters.
+                      </span>
+                  <span *ngIf="customerForm.get('password').errors?.maxlength">
+                    The password must be less than 50 characters.
+                  </span>
+                </span>
+              </div>
+            </div>
       
             <div formGroupName="emailGroup">
               <div class="form-group row mb-2">
@@ -126,7 +152,7 @@
                       <input class="form-control"
                              id="cityId"
                              type="text"
-                             placeholder="City"
+                             placeholder="City (required)"
                              formControlName="city"
                              [ngClass]="{'is-invalid': (customerForm.get('city').touched ||
                                                         customerForm.get('city').dirty) &&
@@ -141,7 +167,7 @@
                       <input class="form-control"
                              id="zipId"
                              type="number"
-                             placeholder="Zip Code"
+                             placeholder="Zip Code (required)"
                              formControlName="zip"
                              [ngClass]="{'is-invalid': (customerForm.get('zip').touched ||
                                                         customerForm.get('zip').dirty) &&
@@ -160,6 +186,18 @@
                     </div>
                   </div>
                  
+                 
+                  <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label"
+                           for="birthdateId">Birthdate</label>
+                    <div class="col-md-8">
+                      <input class="form-control"
+                             id="birthdateId"
+                             type="date"
+                             placeholder="dd-mm-yyyy"
+                             formControlName="birthdate" />
+                    </div>
+                  </div>
 
       
             <div class="form-group row mb-2">

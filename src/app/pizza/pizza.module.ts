@@ -11,10 +11,11 @@ import {ButtonModule} from 'primeng/button';
 import {DragDropModule} from 'primeng/dragdrop';
 import {TableModule} from 'primeng/table';
 import { FormsModule } from '@angular/forms';
+import { PizzaPartyComponent } from './pizza-party/pizza-party.component';
 
 
 @NgModule({
-  declarations: [PizzaListComponent, PizzaCustomComponent, WelcomeComponent, BestPizzaComponent],
+  declarations: [PizzaListComponent, PizzaCustomComponent, WelcomeComponent, BestPizzaComponent, PizzaPartyComponent],
   imports: [
     CommonModule,
     ToastModule,

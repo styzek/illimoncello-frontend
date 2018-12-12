@@ -6,5 +6,6 @@ export class Usersignup {
     public name = '',
     public street = '',
     public city = '',
+    public birthdate?:Date,
     public zip?: Number) {}
 }

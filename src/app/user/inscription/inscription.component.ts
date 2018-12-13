@@ -34,10 +34,10 @@ function emailMatcher(c: AbstractControl): { [key: string]: boolean } | null {
       email: 'Please enter a valid email address.'
     };
   
-    constructor(private fb: FormBuilder, private service: SignupService, private router: Router) { }
+    constructor(private _fb: FormBuilder, private _signupService: SignupService, private router: Router) { }
   
     ngOnInit() {
-      this.customerForm = this.fb.group({
+      this.customerForm = this._fb.group({
         name: ['', [Validators.required, Validators.minLength(3)]],
         birthdate: [''],
         username: ['', [Validators.required, Validators.minLength(3),Validators.maxLength(50)]],
@@ -45,7 +45,7 @@ function emailMatcher(c: AbstractControl): { [key: string]: boolean } | null {
         street: ['', Validators.required],
         city: ['', Validators.required],
         zip: ['', [Validators.required, Validators.min(1000), Validators.max(9999)]],
-        emailGroup: this.fb.group({
+        emailGroup: this._fb.group({
           email: ['', [Validators.required, Validators.email]],
           confirmEmail: ['', Validators.required],
         }, { validator: emailMatcher })
@@ -73,7 +73,7 @@ function emailMatcher(c: AbstractControl): { [key: string]: boolean } | null {
     }
   
     save() {
-        this.service.attemptSignup(this.customerForm.value).subscribe();
+        this._signupService.attemptSignup(this.customerForm.value).subscribe();
         this.router.navigate(['welcome']);
     }
   

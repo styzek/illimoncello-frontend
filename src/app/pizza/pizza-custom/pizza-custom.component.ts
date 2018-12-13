@@ -20,19 +20,19 @@ export class PizzaCustomComponent implements OnInit {
 
   draggedIngredient: Ingredient;
 
-  constructor(private router: Router, private _service: PizzasService) { }
+  constructor(private router: Router, private _pizzaService: PizzasService) { }
 
   ngOnInit() {
     
     this.selectedIngredients = [];
-    this._service.getIngredientsAll().subscribe(
+    this._pizzaService.getIngredientsAll().subscribe(
       resp => {
         this.availableIngredients = resp;
       }, err => console.log('*** Attention : Il y a eu erreur lors de l\'appel getPizzasAll : ' + err));
   }
 
   onSubmit() {
-    this._service.addPizzaCustom(this.selectedIngredients).subscribe(resp => this._service.addToCart(this.pizza = resp));
+    this._pizzaService.addPizzaCustom(this.selectedIngredients).subscribe(resp => this._pizzaService.addToCart(this.pizza = resp));
       this.router.navigate(['pizzas']);
   }
 

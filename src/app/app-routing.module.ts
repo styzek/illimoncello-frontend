@@ -17,37 +17,10 @@ const routes: Routes = [
   { path: 'bestpizzas', component: BestPizzaComponent},
   { path: 'pizzacustom', component: PizzaCustomComponent},
   {path: 'pizzaparty', component: PizzaPartyComponent},
-  // { path: 'pizza/:id', component: },
-  // { path: 'add', component: ProductsAddComponent, canActivate: [ProductAddGuard]},
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: InscriptionComponent},
   { path: 'cart', component: CartComponent},
   { path: '**', component: ErrorComponent},
-
-  
-  /* {path: 'pizzas',
-  children: [
-    {
-      path: 'list',
-      component: PizzaListComponent
-    },
-    {
-      path: 'custom',
-      component: PizzaCustomComponent
-    },
-     {
-      path: 'favourite-pizzas',
-      component: FavouritePizzasComponent
-    }, 
-    {
-      path: 'cart',
-      component: CartComponent
-    }
-     {
-      path: 'checkouts',
-      loadChildren: './checkout/checkout.module#CheckoutModule'
-    } 
-  ]}, */
 ];
 
 @NgModule({

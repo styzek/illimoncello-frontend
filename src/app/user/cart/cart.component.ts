@@ -14,8 +14,6 @@ import { MessageService } from 'primeng/components/common/messageservice';
 export class CartComponent implements OnInit {
 	
 	cartPizzas: Pizza[];
-	showDataNotFound = true;
-	resultMessage: String;
 	isLoggedIn: boolean;
 	pizzaFav: Pizza[];
 	result: String;
@@ -24,10 +22,10 @@ export class CartComponent implements OnInit {
 	messageTitle = 'No Products Found in Cart';
 	messageDescription = 'Please, Add Pizzas to Cart';
 
-
-	
-
-	constructor(private _pizzaService: PizzasService, private _authSevice: AuthService, private messageService : MessageService, private router: Router, private _cartService: CartService) {}
+	constructor(private _pizzaService: PizzasService, private _authSevice: AuthService, 
+		private _messageService : MessageService, private router: Router, private _cartService: CartService) {
+			this.pizzaFav = [];
+		}
 
 
 
@@ -64,14 +62,15 @@ export class CartComponent implements OnInit {
 		this.router.navigate(['welcome']);},
 			err => console.log('*** Attention : Il y a eu erreur lors de l\'encodage du panier : ' + err));
 	}
+	
 	addBestPizza(pizza: Pizza) {
     
 		if (!this.pizzaFav.some( pizzaf => pizzaf.name === pizza.name)){
 		  this._pizzaService.addBestPizza(pizza, window.sessionStorage.getItem('currentuser')).subscribe(resp => this._authSevice.pizzaFav.push(resp));
-		  this.messageService.add({key: 'myKey1', severity:'success', summary: 'Success', detail: 'Pizza added to favorites'});
+		  this._messageService.add({key: 'myKey1', severity:'success', summary: 'Success', detail: 'Pizza added to favorites'});
 		console.log(this.result);
 		} else {
-		  this.messageService.add({key: 'myKey1', severity:'error', summary: 'Failure', detail: 'Pizza already in favorites'});
+		  this._messageService.add({key: 'myKey1', severity:'error', summary: 'Failure', detail: 'Pizza already in favorites'});
 		}
 	   
 	  }

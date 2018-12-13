@@ -86,8 +86,8 @@
 
 </div>
 <div *ngIf="isLoggedIn; else needlogin" >
-<button pButton type="button" label="Checkout" class="ui-button-rounded" style="height:75px;width:200px;font-size : 25px" (click)="checkoutcart()"></button>
+<button  pButton type="button" label="Checkout" class="ui-button-rounded" style="height:75px;width:200px;font-size : 25px" (click)="checkoutcart()"></button>
 </div>
 <ng-template #needlogin>
-  <button pButton type="button" label="Login" class="ui-button-rounded" style="height:75px;width:200px;font-size : 25px" [routerLink]="['/login']"></button>
+  <button  pButton type="button" label="Login" class="ui-button-rounded" style="height:75px;width:200px;font-size : 25px" [routerLink]="['/login']"></button>
 </ng-template>

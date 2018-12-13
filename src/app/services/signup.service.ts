@@ -8,10 +8,10 @@ import { FormGroup } from '@angular/forms';
 })
 export class SignupService {
 
-  constructor(private http: HttpClient) {
+  constructor(private _http: HttpClient) {
   }
 
   attemptSignup(registerForm: FormGroup): Observable<any> {
-    return this.http.post<any>('http://localhost:8080/api/signup', registerForm);
+    return this._http.post<any>('http://localhost:8080/api/signup', registerForm);
   }
 }

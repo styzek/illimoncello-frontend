@@ -7,10 +7,6 @@ import { map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Pizza } from '../domain/pizza';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -25,27 +21,27 @@ export class AuthService {
 
   user: User = {username: '', password: ''};
 
-  constructor(private http: HttpClient, private tokenService: TokenStorage, private router: Router) {
+  constructor(private _http: HttpClient, private _tokenService: TokenStorage) {
     this.pizzaFav = [];
   }
 
   attemptAuth(username: string, password: string): Observable<any> {
     const credentials = {username: username, password: password};
-    return this.http.post<any>('http://localhost:8080/api/token/generate-token', credentials);
+    return this._http.post<any>('http://localhost:8080/api/token/generate-token', credentials);
   }
 
   private hasToken(): boolean {
-    return !!this.tokenService.getToken();
+    return !!this._tokenService.getToken();
   }
 
   private changeMessage(message: string) {
     this.authenticatedUserName.next(message);
-}
+  }
 
   login(username: string, password: string): void {
     this.attemptAuth(username, password).subscribe(
       data => {
-        this.tokenService.saveToken(data.token);
+        this._tokenService.saveToken(data.token);
         this.isLoginSubject.next(true);
         sessionStorage.setItem('currentuser', username);
         this.changeMessage(username);
@@ -56,7 +52,7 @@ export class AuthService {
   }
 
   logout(): void {
-    this.tokenService.signOut();
+    this._tokenService.signOut();
     this.isLoginSubject.next(false);
     window.sessionStorage.removeItem('currentuser');
     this.pizzaFav = [];
@@ -68,11 +64,11 @@ export class AuthService {
   }
 
   getUserFavPizza(name:string): Observable<Pizza[]>{
-    return this.http.get<Pizza[]>(this.URL + '/bestpizzas/' + name);
+    return this._http.get<Pizza[]>(this.URL + '/bestpizzas/' + name);
   }
 
   removeBestPizza(pizza: Pizza[], name: string): Observable<Pizza[]>{
-    return this.http.post<Pizza[]>(this.URL + '/removebestpizza/' + name, pizza);
+    return this._http.post<Pizza[]>(this.URL + '/removebestpizza/' + name, pizza);
   }
 
 }

@@ -9,6 +9,7 @@ import { PizzasService } from 'src/app/services/pizzas.service';
 	styleUrls: [ './pizza-best.component.scss' ]
 })
 export class BestPizzaComponent implements OnInit {
+	
 	bestPizzas: Pizza[];
 	
 	constructor(private _pizzaService: PizzasService) {}

@@ -5,18 +5,13 @@ import { Pizza } from '../domain/pizza';
 import { Category } from '../domain/category';
 import { Ingredient } from '../domain/ingredient';
 
- const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-}; 
-
 @Injectable({providedIn: 'root'})
 export class PizzasService {
-
-  navbarCartCount = 0;
-
+	navbarCartCount = 0;
+	
 	constructor(private _http: HttpClient) { }
 		
-  private URL = 'http://localhost:8080/api/pizza';
+  	private URL = 'http://localhost:8080/api/pizza';
 
 
   public getPizzasAll(): Observable<Pizza[]> {
@@ -47,10 +42,7 @@ export class PizzasService {
 	public addBestPizza(pizza: Pizza, name: String): Observable<Pizza> {
     return this._http.post<any>(this.URL+'/addbestpizza/'+ name, pizza);
 	}
- 
-	// public addProduct(p: Pizza): Observable<any> {
-  //   return this._http.post(this.URL, p);
-	// }
+
 	
 	addPizzaCustom(ingredients: Ingredient[] ): Observable<Pizza> {
     return this._http.post<Pizza>(this.URL + '/setPizzaCustomtoCart', ingredients);
@@ -85,27 +77,10 @@ export class PizzasService {
 	 }
 
 		a.push(pizza);
-
-
-		//this.toastrService.wait('Adding Pizza to Cart', 'Pizza Adding to the cart');
-		
 			window.sessionStorage.setItem('avct_item', JSON.stringify(a));
 			this.calculateLocalCartPizzaCounts();
 	
 	}
-
-	/* addToCartPizzaCustAndParty(pizza: Pizza): void {
-	 	let a: Pizza[];
-		a = JSON.parse(window.sessionStorage.getItem('avct_item')) || [];
-		pizza.numberofpizza = 1;
-		a.push(pizza);
-
-		//this.toastrService.wait('Adding Pizza to Cart', 'Pizza Adding to the cart');
-		setTimeout(() => {
-			window.sessionStorage.setItem('avct_item', JSON.stringify(a));
-			this.calculateLocalCartPizzaCounts();
-		}, 500); 
-	} */
 
 	// Removing cart from local
 	removeLocalCartPizza(pizza: Pizza) {

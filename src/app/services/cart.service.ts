@@ -7,14 +7,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CartService {
-
+  
+  private URL = 'http://localhost:8080/api/cart';
   name: String;
 
-  constructor(private _http: HttpClient) { 
-  }
-  private URL = 'http://localhost:8080/api/cart';
+  constructor(private _http: HttpClient) { }
+ 
     
-    public checkoutCart(pizzas: Pizza[]): Observable<any> {
-			return this._http.put(this.URL+'/checkoutcart/'+ sessionStorage.getItem('currentuser'), pizzas, {responseType: 'text'});
-      }
+  public checkoutCart(pizzas: Pizza[]): Observable<any> {
+		return this._http.put(this.URL+ '/checkoutcart/'+ sessionStorage.getItem('currentuser'), pizzas, {responseType: 'text'});
+  }
 }

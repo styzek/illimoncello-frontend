@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -8,9 +8,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class HeaderComponentComponent implements OnInit {
 
- 
   isLoggedIn: boolean;
-
   currentUser: string;
 
   constructor(private authserv: AuthService) {
@@ -18,7 +16,6 @@ export class HeaderComponentComponent implements OnInit {
 
   ngOnInit() {
     this.authserv.isLoggedIn().subscribe(value => this.isLoggedIn = value);
-    this.authserv.currentMessage.subscribe(name => this.currentUser = window.sessionStorage.getItem('currentuser'));
-    
+    this.authserv.currentMessage.subscribe(name => this.currentUser = window.sessionStorage.getItem('currentuser'));   
   }
  }

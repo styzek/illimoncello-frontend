@@ -10,13 +10,13 @@ import { HeaderComponentComponent } from './header-component/header-component.co
 import { PizzaModule } from './pizza/pizza.module';
 import { UserModule } from './user/user.module';
 import { OtherModule } from './other/other.module';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './interceptors/my-jwt-interceptor';
 import { HttpModule } from '@angular/http';
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/components/common/messageservice';
-import {DragDropModule} from 'primeng/dragdrop';
+import { DragDropModule } from 'primeng/dragdrop';
 
 
 @NgModule({

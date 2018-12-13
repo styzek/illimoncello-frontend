@@ -4,4 +4,5 @@ export interface Category {
     id: number;
     name: string;
     pizzas: Pizza[];
+    official: boolean;
 }

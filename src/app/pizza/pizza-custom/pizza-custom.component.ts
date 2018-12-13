@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Ingredient } from 'src/app/domain/ingredient';
-import { Router } from '@angular/router';
-import { PizzasService } from 'src/app/services/pizzas.service';
-import { Pizza } from 'src/app/domain/pizza';
+import {Component, OnInit} from '@angular/core';
+import {Ingredient} from 'src/app/domain/ingredient';
+import {Router} from '@angular/router';
+import {PizzasService} from 'src/app/services/pizzas.service';
+import {Pizza} from 'src/app/domain/pizza';
 
 @Component({
   selector: 'app-pizza-custom',
@@ -20,10 +20,11 @@ export class PizzaCustomComponent implements OnInit {
 
   draggedIngredient: Ingredient;
 
-  constructor(private router: Router, private _pizzaService: PizzasService) { }
+  constructor(private router: Router, private _pizzaService: PizzasService) {
+  }
 
   ngOnInit() {
-    
+
     this.selectedIngredients = [];
     this._pizzaService.getIngredientsAll().subscribe(
       resp => {
@@ -33,19 +34,19 @@ export class PizzaCustomComponent implements OnInit {
 
   onSubmit() {
     this._pizzaService.addPizzaCustom(this.selectedIngredients).subscribe(resp => this._pizzaService.addToCart(this.pizza = resp));
-      this.router.navigate(['pizzas']);
+    this.router.navigate(['pizzas']);
   }
 
-  dragStart(event,ingredient: Ingredient) {
+  dragStart(event, ingredient: Ingredient) {
     this.draggedIngredient = ingredient;
   }
 
   drop(event) {
-    if(this.draggedIngredient) {
-        let draggedIngredientIndex = this.findIndex(this.draggedIngredient);
-        this.selectedIngredients = [...this.selectedIngredients, this.draggedIngredient];
-        this.availableIngredients = this.availableIngredients.filter((val,i) => i!=draggedIngredientIndex);
-        this.draggedIngredient = null;
+    if (this.draggedIngredient) {
+      let draggedIngredientIndex = this.findIndex(this.draggedIngredient);
+      this.selectedIngredients = [...this.selectedIngredients, this.draggedIngredient];
+      this.availableIngredients = this.availableIngredients.filter((val, i) => i != draggedIngredientIndex);
+      this.draggedIngredient = null;
     }
   }
 
@@ -55,11 +56,11 @@ export class PizzaCustomComponent implements OnInit {
 
   findIndex(ingredient: Ingredient) {
     let index = -1;
-    for(let i = 0; i < this.availableIngredients.length; i++) {
-        if(ingredient.id === this.availableIngredients[i].id) {
-            index = i;
-            break;
-        }
+    for (let i = 0; i < this.availableIngredients.length; i++) {
+      if (ingredient.id === this.availableIngredients[i].id) {
+        index = i;
+        break;
+      }
     }
     return index;
   }
@@ -67,7 +68,7 @@ export class PizzaCustomComponent implements OnInit {
   deleteItemClicked(ingredient: Ingredient) {
     const key = this.selectedIngredients.indexOf(ingredient, 0);
 
-    if ( key > -1){
+    if (key > -1) {
       this.selectedIngredients.splice(key, 1);
     }
 

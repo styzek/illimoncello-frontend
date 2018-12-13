@@ -1,26 +1,26 @@
 <div class="card">
-        <div class="card-header">
-          Sign Up!
-        </div>
-      
-        <div class="card-body">
-          <form novalidate
-                (ngSubmit)="save()"
-                [formGroup]="customerForm">
-      
-            <div class="form-group row mb-2">
-              <label class="col-md-2 col-form-label"
-                     for="nameId">First Name</label>
-              <div class="col-md-8">
-                <input class="form-control"
-                       id="nameId"
-                       type="text"
-                       placeholder="First Name (required)"
-                       formControlName="name"
-                       [ngClass]="{'is-invalid': (customerForm.get('name').touched ||
+  <div class="card-header">
+    Sign Up!
+  </div>
+
+  <div class="card-body">
+    <form novalidate
+          (ngSubmit)="save()"
+          [formGroup]="customerForm">
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="nameId">First Name</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="nameId"
+                 type="text"
+                 placeholder="First Name (required)"
+                 formControlName="name"
+                 [ngClass]="{'is-invalid': (customerForm.get('name').touched ||
                                                   customerForm.get('name').dirty) &&
-                                                  !customerForm.get('name').valid }" />
-                <span class="invalid-feedback">
+                                                  !customerForm.get('name').valid }"/>
+          <span class="invalid-feedback">
                   <span *ngIf="customerForm.get('name').errors?.required">
                     Please enter your first name.
                   </span>
@@ -28,22 +28,22 @@
                     The first name must be longer than 3 characters.
                   </span>
                 </span>
-              </div>
-            </div>
-      
-            <div class="form-group row mb-2">
-              <label class="col-md-2 col-form-label"
-                     for="usernameId">Username</label>
-              <div class="col-md-8">
-                <input class="form-control"
-                       id="usernameId"
-                       type="text"
-                       placeholder="Last Name (required)"
-                       formControlName="username"
-                       [ngClass]="{'is-invalid': (customerForm.get('username').touched ||
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="usernameId">Username</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="usernameId"
+                 type="text"
+                 placeholder="Last Name (required)"
+                 formControlName="username"
+                 [ngClass]="{'is-invalid': (customerForm.get('username').touched ||
                                                   customerForm.get('username').dirty) &&
-                                                  !customerForm.get('username').valid }" />
-                <span class="invalid-feedback">
+                                                  !customerForm.get('username').valid }"/>
+          <span class="invalid-feedback">
                   <span *ngIf="customerForm.get('username').errors?.required">
                     Please enter your username.
                   </span>
@@ -54,22 +54,22 @@
                     The username must be less than 50 characters.
                   </span>
                 </span>
-              </div>
-            </div>
+        </div>
+      </div>
 
-            <div class="form-group row mb-2">
-              <label class="col-md-2 col-form-label"
-                     for="passwordId">Password</label>
-              <div class="col-md-8">
-                <input class="form-control"
-                       id="passwordId"
-                       type="password"
-                       placeholder="Password (required)"
-                       formControlName="password"
-                       [ngClass]="{'is-invalid': (customerForm.get('password').touched ||
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="passwordId">Password</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="passwordId"
+                 type="password"
+                 placeholder="Password (required)"
+                 formControlName="password"
+                 [ngClass]="{'is-invalid': (customerForm.get('password').touched ||
                                                   customerForm.get('password').dirty) &&
-                                                  !customerForm.get('password').valid }" />
-                <span class="invalid-feedback">
+                                                  !customerForm.get('password').valid }"/>
+          <span class="invalid-feedback">
                   <span *ngIf="customerForm.get('password').errors?.required">
                     Please enter your password.
                   </span>
@@ -80,67 +80,40 @@
                     The password must be less than 50 characters.
                   </span>
                 </span>
-              </div>
-            </div>
-      
-            <div class="form-group row mb-2">
-                    <label class="col-md-2 col-form-label"
-                    for="passwordId">Password</label>
-                    <div class="col-md-8">
-                    <input class="form-control"
-                    id="passwordId"
-                    type="password"
-                    placeholder="Password (required)"
-                    formControlName="password"
-                    [ngClass]="{'is-invalid': (customerForm.get('password').touched ||
-                    customerForm.get('password').dirty) &&
-                    !customerForm.get('password').valid }" />
-                    <span class="invalid-feedback">
-                    <span *ngIf="customerForm.get('password').errors?.required">
-                    Please enter your password.
-                    </span>
-                    <span *ngIf="customerForm.get('password').errors?.minlength">
-                    The password must be longer than 3 characters.
-                    </span>
-                    <span *ngIf="customerForm.get('password').errors?.maxlength">
-                    The password must be less than 50 characters.
-                    </span>
-                    </span>
-                    </div>
-                    </div>
+        </div>
+      </div>
 
-
-            <div formGroupName="emailGroup">
-              <div class="form-group row mb-2">
-                <label class="col-md-2 col-form-label"
-                       for="emailId">Email</label>
-                <div class="col-md-8">
-                  <input class="form-control"
-                         id="emailId"
-                         type="email"
-                         placeholder="Email (required)"
-                         formControlName="email"
-                         [ngClass]="{'is-invalid': emailMessage }" />
-                  <span class="invalid-feedback">
+      <div formGroupName="emailGroup">
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                 for="emailId">Email</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="emailId"
+                   type="email"
+                   placeholder="Email (required)"
+                   formControlName="email"
+                   [ngClass]="{'is-invalid': emailMessage }"/>
+            <span class="invalid-feedback">
                     {{ emailMessage }}
                   </span>
-                </div>
-              </div>
-      
-              <div class="form-group row mb-2">
-                <label class="col-md-2 col-form-label"
-                       for="confirmEmailId">Confirm Email</label>
-                <div class="col-md-8">
-                  <input class="form-control"
-                         id="confirmEmailId"
-                         type="email"
-                         placeholder="Confirm Email (required)"
-                         formControlName="confirmEmail"
-                         [ngClass]="{'is-invalid': customerForm.get('emailGroup').errors ||
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                 for="confirmEmailId">Confirm Email</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="confirmEmailId"
+                   type="email"
+                   placeholder="Confirm Email (required)"
+                   formControlName="confirmEmail"
+                   [ngClass]="{'is-invalid': customerForm.get('emailGroup').errors ||
                                                    ((customerForm.get('emailGroup.confirmEmail').touched || 
                                                     customerForm.get('emailGroup.confirmEmail').dirty) && 
-                                                    !customerForm.get('emailGroup.confirmEmail').valid) }" />
-                  <span class="invalid-feedback">
+                                                    !customerForm.get('emailGroup.confirmEmail').valid) }"/>
+            <span class="invalid-feedback">
                     <span *ngIf="customerForm.get('emailGroup.confirmEmail').errors?.required">
                       Please confirm your email address.
                     </span>
@@ -148,58 +121,58 @@
                       The confirmation does not match the email address.
                     </span>
                   </span>
-                </div>
-              </div>
-            </div> 
-           
-            <div class="form-group row mb-2">
-                    <label class="col-md-2 col-form-label"
-                           for="addressId">Address</label>
-                    <div class="col-md-8">
-                      <input class="form-control"
-                             id="addressId"
-                             type="text"
-                             placeholder="Address (required)"
-                             formControlName="street"
-                             [ngClass]="{'is-invalid': (customerForm.get('street').touched ||
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="addressId">Address</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="addressId"
+                 type="text"
+                 placeholder="Address (required)"
+                 formControlName="street"
+                 [ngClass]="{'is-invalid': (customerForm.get('street').touched ||
                                                         customerForm.get('street').dirty) &&
-                                                        !customerForm.get('street').valid }" />
-                      <span class="invalid-feedback">
+                                                        !customerForm.get('street').valid }"/>
+          <span class="invalid-feedback">
                         <span *ngIf="customerForm.get('street').errors?.required">
                           Please enter your first name.
                         </span>
                       </span>
-                    </div>
-                  </div>
-      
-                  <div class="form-group row mb-2">
-                    <label class="col-md-2 col-form-label"
-                           for="cityId">City, Zip Code</label>
-                    <div class="col-md-3">
-                      <input class="form-control"
-                             id="cityId"
-                             type="text"
-                             placeholder="City (required)"
-                             formControlName="city"
-                             [ngClass]="{'is-invalid': (customerForm.get('city').touched ||
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="cityId">City, Zip Code</label>
+        <div class="col-md-3">
+          <input class="form-control"
+                 id="cityId"
+                 type="text"
+                 placeholder="City (required)"
+                 formControlName="city"
+                 [ngClass]="{'is-invalid': (customerForm.get('city').touched ||
                                                         customerForm.get('city').dirty) &&
-                                                        !customerForm.get('city').valid }" />
-                             <span class="invalid-feedback">
+                                                        !customerForm.get('city').valid }"/>
+          <span class="invalid-feedback">
                                     <span *ngIf="customerForm.get('city').errors?.required">
                                          Please enter your city.
                                     </span>
                             </span>
-                    </div>
-                    <div class="col-md-2">
-                      <input class="form-control"
-                             id="zipId"
-                             type="number"
-                             placeholder="Zip Code (required)"
-                             formControlName="zip"
-                             [ngClass]="{'is-invalid': (customerForm.get('zip').touched ||
+        </div>
+        <div class="col-md-2">
+          <input class="form-control"
+                 id="zipId"
+                 type="number"
+                 placeholder="Zip Code (required)"
+                 formControlName="zip"
+                 [ngClass]="{'is-invalid': (customerForm.get('zip').touched ||
                                                         customerForm.get('zip').dirty) &&
-                                                        !customerForm.get('zip').valid }" />
-                      <span class="invalid-feedback">
+                                                        !customerForm.get('zip').valid }"/>
+          <span class="invalid-feedback">
                         <span *ngIf="customerForm.get('zip').errors?.required">
                              Please enter your zip code.
                         </span>
@@ -210,39 +183,39 @@
                                 Please enter max 9999.
                            </span>
                       </span>
-                    </div>
-                  </div>
-                 
-                 
-                  <div class="form-group row mb-2">
-                    <label class="col-md-2 col-form-label"
-                           for="birthdateId">Birthdate</label>
-                    <div class="col-md-8">
-                      <input class="form-control"
-                             id="birthdateId"
-                             type="date"
-                             placeholder="dd-mm-yyyy"
-                             formControlName="birthdate" />
-                    </div>
-                  </div>
-
-      
-            <div class="form-group row mb-2">
-              <div class="offset-md-2 col-md-4">
-                <button class="btn btn-primary mr-3"
-                        type="submit"
-                        style="width:80px"
-                        [title]="customerForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
-                        [disabled]="!customerForm.valid">
-                  Sign up !
-                </button>
-                <button class="btn btn-outline-secondary"
-                        type="button"
-                        (click)="populateTestData()">
-                  Test Data
-                </button>
-              </div>
-            </div>
-          </form>
         </div>
       </div>
+
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="birthdateId">Birthdate</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="birthdateId"
+                 type="date"
+                 placeholder="dd-mm-yyyy"
+                 formControlName="birthdate"/>
+        </div>
+      </div>
+
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+          <button class="btn btn-primary mr-3"
+                  type="submit"
+                  style="width:80px"
+                  [title]="customerForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                  [disabled]="!customerForm.valid">
+            Sign up !
+          </button>
+          <button class="btn btn-outline-secondary"
+                  type="button"
+                  (click)="populateTestData()">
+            Test Data
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

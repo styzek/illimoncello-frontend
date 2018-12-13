@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Ingredient } from 'src/app/domain/ingredient';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { PizzasService } from 'src/app/services/pizzas.service';
-import { Pizza } from 'src/app/domain/pizza';
+import {Component, OnInit} from '@angular/core';
+import {Ingredient} from 'src/app/domain/ingredient';
+import {FormGroup, Validators, FormBuilder} from '@angular/forms';
+import {Router} from '@angular/router';
+import {PizzasService} from 'src/app/services/pizzas.service';
+import {Pizza} from 'src/app/domain/pizza';
 
 @Component({
   selector: 'app-pizza-party',
@@ -17,13 +17,14 @@ export class PizzaPartyComponent implements OnInit {
 
   availableIngredients: Ingredient[];
 
-    selectedIngredients: Ingredient[];
+  selectedIngredients: Ingredient[];
 
-    draggedIngredient: Ingredient;
+  draggedIngredient: Ingredient;
 
   registerForm: FormGroup;
 
-    constructor(private router: Router, private _pizzaService: PizzasService) { }
+  constructor(private router: Router, private _pizzaService: PizzasService) {
+  }
 
   ngOnInit() {
 
@@ -35,20 +36,20 @@ export class PizzaPartyComponent implements OnInit {
   }
 
   onSubmit() {
-     this._pizzaService.addPizzaParty(this.selectedIngredients).subscribe(resp => this._pizzaService.addToCart(this.pizza = resp));
-     this.router.navigate(['pizzas']);
+    this._pizzaService.addPizzaParty(this.selectedIngredients).subscribe(resp => this._pizzaService.addToCart(this.pizza = resp));
+    this.router.navigate(['pizzas']);
   }
- 
-  dragStart(event,ingredient: Ingredient) {
+
+  dragStart(event, ingredient: Ingredient) {
     this.draggedIngredient = ingredient;
   }
 
   drop(event) {
-    if(this.draggedIngredient) {
-        let draggedIngredientIndex = this.findIndex(this.draggedIngredient);
-        this.selectedIngredients = [...this.selectedIngredients, this.draggedIngredient];
-        this.availableIngredients = this.availableIngredients.filter((val,i) => i!=draggedIngredientIndex);
-        this.draggedIngredient = null;
+    if (this.draggedIngredient) {
+      let draggedIngredientIndex = this.findIndex(this.draggedIngredient);
+      this.selectedIngredients = [...this.selectedIngredients, this.draggedIngredient];
+      this.availableIngredients = this.availableIngredients.filter((val, i) => i != draggedIngredientIndex);
+      this.draggedIngredient = null;
     }
   }
 
@@ -58,11 +59,11 @@ export class PizzaPartyComponent implements OnInit {
 
   findIndex(ingredient: Ingredient) {
     let index = -1;
-    for(let i = 0; i < this.availableIngredients.length; i++) {
-        if(ingredient.id === this.availableIngredients[i].id) {
-            index = i;
-            break;
-        }
+    for (let i = 0; i < this.availableIngredients.length; i++) {
+      if (ingredient.id === this.availableIngredients[i].id) {
+        index = i;
+        break;
+      }
     }
     return index;
   }
@@ -71,7 +72,7 @@ export class PizzaPartyComponent implements OnInit {
     ingredient.numberIngredient = 1;
     const key = this.selectedIngredients.indexOf(ingredient, 0);
 
-    if ( key > -1){
+    if (key > -1) {
       this.selectedIngredients.splice(key, 1);
     }
 
@@ -84,7 +85,8 @@ export class PizzaPartyComponent implements OnInit {
     let a: Ingredient[];
     a = this.selectedIngredients;
 
-    if(a.indexOf(ingredient) !== -1){}
+    if (a.indexOf(ingredient) !== -1) {
+    }
     for (let i = 0; i < a.length; i++) {
       if (a[i].id === ingredient.id) {
         numberofingredientlist = +a[i].numberIngredient + +1;
@@ -102,18 +104,19 @@ export class PizzaPartyComponent implements OnInit {
     let a: Ingredient[];
     a = this.selectedIngredients;
 
-    if(ingredient.numberIngredient === 1){ 
+    if (ingredient.numberIngredient === 1) {
       this.deleteItemClicked(ingredient);
     } else {
-      if(a.indexOf(ingredient) !== -1){}
+      if (a.indexOf(ingredient) !== -1) {
+      }
       for (let i = 0; i < a.length; i++) {
         if (a[i].id === ingredient.id) {
-        numberofingredientlist = +a[i].numberIngredient - +1;
-        console.log(numberofingredientlist);
-        ingredient.numberIngredient = numberofingredientlist;
-        console.log(ingredient.numberIngredient);
-        a.slice(i, 1);
-        break;
+          numberofingredientlist = +a[i].numberIngredient - +1;
+          console.log(numberofingredientlist);
+          ingredient.numberIngredient = numberofingredientlist;
+          console.log(ingredient.numberIngredient);
+          a.slice(i, 1);
+          break;
         }
       }
     }

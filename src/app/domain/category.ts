@@ -1,8 +1,8 @@
-import { Pizza } from "./pizza";
+import {Pizza} from './pizza';
 
 export interface Category {
-    id: number;
-    name: string;
-    pizzas: Pizza[];
-    official: boolean;
+  id: number;
+  name: string;
+  pizzas: Pizza[];
+  official: boolean;
 }

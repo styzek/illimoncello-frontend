@@ -1,5 +1,6 @@
 <br>
-<p-toast position="top"  key="myKey1" life ="'200ms'" [showTransitionOptions]="'100ms'" [hideTransitionOptions]="'100ms'"></p-toast>
+<p-toast position="top" key="myKey1" life="'200ms'" [showTransitionOptions]="'100ms'"
+         [hideTransitionOptions]="'100ms'"></p-toast>
 <div class="container" *ngIf="cartPizzas.length > 0">
   <div class="row">
     <!-- List of Pizzas -->
@@ -25,31 +26,33 @@
 
                 <!--Card content-->
                 <div class="card-body text-center no-padding">
-                
+
                   <h5 class="card-title">
                     <strong>
                       <a>{{ pizza.name }}</a>
                     </strong>
                   </h5>
 
-                
-                <div class="card-body text-center no-padding">
-                
+
+                  <div class="card-body text-center no-padding">
+
                     <h5 class="card-title">
                       <strong>
                         <a>{{ pizza.numberofpizza }}</a>
                       </strong>
                     </h5>
 
-                  <!--Description-->
-                  <div class="card-text" *ngFor="let ingredient of pizza.ingredients">{{ingredient.name}} </div>
+                    <!--Description-->
+                    <div class="card-text" *ngFor="let ingredient of pizza.ingredients">{{ingredient.name}}</div>
 
-                  <!--Card footer-->
-                  <div>
-                    <span class="left">{{ pizza.price }} €</span>
-                    <span><button type="button" class="btn btn-success ml-1" (click)="addNumberOfPizzaToCart(pizza)">+</button></span>
-                    <span><button type="button" class="btn btn-danger ml-1" (click)="substractNumberOfPizzaToCart(pizza)">-</button></span>                    
-                    <span class="right">
+                    <!--Card footer-->
+                    <div>
+                      <span class="left">{{ pizza.price }} €</span>
+                      <span><button type="button" class="btn btn-success ml-1"
+                                    (click)="addNumberOfPizzaToCart(pizza)">+</button></span>
+                      <span><button type="button" class="btn btn-danger ml-1"
+                                    (click)="substractNumberOfPizzaToCart(pizza)">-</button></span>
+                      <span class="right">
                       <a placement="top" mdbTooltip="Quick Look" container="body">
                         <i class="fa fa-eye"></i>
                       </a>
@@ -57,37 +60,41 @@
                         <i class="fa fa-trash"></i>
                       </a>
                     </span>
-                  </div>
-                  
-                    <button *ngIf='pizza.name != "PizzaParty"' class="mt-3" pButton type="button" [disabled]="!(isLoggedIn)" (click)="addBestPizza(pizza)" icon="pi pi-star" iconPos="right" label="Favorite"></button>
+                    </div>
+
+                    <button *ngIf='pizza.name != "PizzaParty"' class="mt-3" pButton type="button"
+                            [disabled]="!(isLoggedIn)" (click)="addBestPizza(pizza)" icon="pi pi-star" iconPos="right"
+                            label="Favorite"></button>
 
                   </div>
-                <!--/.Card content-->
+                  <!--/.Card content-->
+
+                </div>
+                <!--/.Card-->
 
               </div>
-              <!--/.Card-->
-
             </div>
           </div>
         </div>
-      </div>
 
+      </div>
+      <div class="col-4">
+        <!--  <app-cart-calculator [pizzas]="cartPizzas"></app-cart-calculator> -->
+      </div>
     </div>
     <div class="col-4">
-     <!--  <app-cart-calculator [pizzas]="cartPizzas"></app-cart-calculator> -->
+      <app-cart-calculator [pizzas]="cartPizzas"></app-cart-calculator>
     </div>
   </div>
-  <div class="col-4">
-    <app-cart-calculator [pizzas]="cartPizzas"></app-cart-calculator>
-  </div>
-</div>
-<div class="container" *ngIf="cartPizzas.length === 0">
-<!--   <app-no-products-found [title]="messageTitle" [description]="messageDescription"></app-no-products-found> -->
+  <div class="container" *ngIf="cartPizzas.length === 0">
+    <!--   <app-no-products-found [title]="messageTitle" [description]="messageDescription"></app-no-products-found> -->
 
-</div>
-<div *ngIf="isLoggedIn; else needlogin" >
-<button  pButton type="button" label="Checkout" class="ui-button-rounded" style="height:75px;width:200px;font-size : 25px" (click)="checkoutcart()"></button>
-</div>
-<ng-template #needlogin>
-  <button  pButton type="button" label="Login" class="ui-button-rounded" style="height:75px;width:200px;font-size : 25px" [routerLink]="['/login']"></button>
-</ng-template>
+  </div>
+  <div *ngIf="isLoggedIn; else needlogin">
+    <button pButton type="button" label="Checkout" class="ui-button-rounded"
+            style="height:75px;width:200px;font-size : 25px" (click)="checkoutcart()"></button>
+  </div>
+  <ng-template #needlogin>
+    <button pButton type="button" label="Login" class="ui-button-rounded"
+            style="height:75px;width:200px;font-size : 25px" [routerLink]="['/login']"></button>
+  </ng-template>

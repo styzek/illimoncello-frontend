@@ -1,51 +1,53 @@
 <form id="PizzaParty" #f="ngForm" (ngSubmit)="onSubmit()">
-    <div class="ui-g">
-        <div id="container" class="twocolumns col-4 float-left ui-g-nopad drag-column">
-            <ul class="list-unstyled" style="margin:0;padding:0">
-                <li *ngFor="let i of availableIngredients;" class="ui-helper-clearfix" pDraggable="ingredients"
-                    (onDragStart)="dragStart($event,i)" (onDragEnd)="dragEnd($event)">
-                    <i class="fa fa-arrows fa-2x" style="float:right;margin-top:8px"></i>
-                    <div style="margin:8px 0 0 8px;float:left">{{i.name}}</div>
-                </li>
-            </ul>
-        </div>
-
-        <div class="col-2 float-left my-auto">
-
-            <p style="font-size: 10em; margin-bottom: -70px; margin-left: 30px">&rarr;</p>
-            <p><b>Choose your ingredients by dragging them into the table</b></p>
-                
-        </div>
-
-        <div class="col-6 float-right drop-column"
-             pDroppable="ingredients"
-             (onDrop)="drop($event)"
-             [ngClass]="{'ui-highlight-car':draggedIngredient}">
-            <p-table [value]="selectedIngredients">
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Number</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-ingredient>
-                    <tr>
-                        <td>{{ingredient.id}}</td>
-                        <td>{{ingredient.name}}</td>
-                        <td>{{ingredient.unit_price}} €</td>
-                        <td>{{ingredient.numberIngredient}}</td>
-                        <span><button type="button" class="btn btn-success" (click)="addNumberOfIngredientPizzaParty(ingredient)">+</button></span>
-                        <span><button type="button" class="btn btn-danger" (click)="substractNumberOfIngredientPizzaParty(ingredient)">-</button></span>
-                        <button (click)="deleteItemClicked( ingredient)" pButton type="button" icon="pi pi-trash"
-                                class="ui-button-danger"></button>
-
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
+  <div class="ui-g">
+    <div id="container" class="twocolumns col-4 float-left ui-g-nopad drag-column">
+      <ul class="list-unstyled" style="margin:0;padding:0">
+        <li *ngFor="let i of availableIngredients;" class="ui-helper-clearfix" pDraggable="ingredients"
+            (onDragStart)="dragStart($event,i)" (onDragEnd)="dragEnd($event)">
+          <i class="fa fa-arrows fa-2x" style="float:right;margin-top:8px"></i>
+          <div style="margin:8px 0 0 8px;float:left">{{i.name}}</div>
+        </li>
+      </ul>
     </div>
-    <button pButton type="submit" label="Add to cart" class="ui-button-success mt-5"></button>
+
+    <div class="col-2 float-left my-auto">
+
+      <p style="font-size: 10em; margin-bottom: -70px; margin-left: 30px">&rarr;</p>
+      <p><b>Choose your ingredients by dragging them into the table</b></p>
+
+    </div>
+
+    <div class="col-6 float-right drop-column"
+         pDroppable="ingredients"
+         (onDrop)="drop($event)"
+         [ngClass]="{'ui-highlight-car':draggedIngredient}">
+      <p-table [value]="selectedIngredients">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Number</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-ingredient>
+          <tr>
+            <td>{{ingredient.id}}</td>
+            <td>{{ingredient.name}}</td>
+            <td>{{ingredient.unit_price}} €</td>
+            <td>{{ingredient.numberIngredient}}</td>
+            <span><button type="button" class="btn btn-success"
+                          (click)="addNumberOfIngredientPizzaParty(ingredient)">+</button></span>
+            <span><button type="button" class="btn btn-danger"
+                          (click)="substractNumberOfIngredientPizzaParty(ingredient)">-</button></span>
+            <button (click)="deleteItemClicked( ingredient)" pButton type="button" icon="pi pi-trash"
+                    class="ui-button-danger"></button>
+
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  <button pButton type="submit" label="Add to cart" class="ui-button-success mt-5"></button>
 </form>
 

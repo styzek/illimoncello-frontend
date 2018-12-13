@@ -24,10 +24,7 @@ import { PizzaPartyComponent } from './pizza-party/pizza-party.component';
     ButtonModule,
     DragDropModule,
     TableModule,
-    FormsModule,
-    
-    
-
+    FormsModule
   ]
 })
 export class PizzaModule { }

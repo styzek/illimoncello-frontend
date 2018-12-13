@@ -1,6 +1,6 @@
 <form id="Login" #f="ngForm" (ngSubmit)="onSubmit()">
     <div class="ui-g">
-        <div id="container" class="twocolumns ui-g-12 ui-md-6 ui-g-nopad drag-column">
+        <div id="container" class="twocolumns col-4 float-left ui-g-nopad drag-column">
             <ul class="list-unstyled" style="margin:0;padding:0">
                 <li *ngFor="let i of availableIngredients;" class="ui-helper-clearfix" pDraggable="ingredients"
                     (onDragStart)="dragStart($event,i)" (onDragEnd)="dragEnd($event)">
@@ -10,7 +10,15 @@
             </ul>
         </div>
 
-        <div class="ui-g-12 ui-md-6 drop-column"
+        <div class="col-2 float-left my-auto">
+
+          
+            <p style="font-size: 10em; margin-bottom: -70px; margin-left: 30px">&rarr;</p>
+            <p><b>Choose your ingredients by dragging them into the table</b></p>
+            
+        </div>
+
+        <div class="col-6 float-right drop-column"
              pDroppable="ingredients"
              (onDrop)="drop($event)"
              [ngClass]="{'ui-highlight-car':draggedIngredient}">
@@ -18,7 +26,7 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th>ID</th>
-                        <th>name</th>
+                        <th>Name</th>
                         <th>Price</th>
                     </tr>
                 </ng-template>
@@ -35,6 +43,6 @@
             </p-table>
         </div>
     </div>
-    <button pButton type="submit" label="Add to cart" class="ui-button-success"></button>
+    <button pButton type="submit" label="Add to cart" class="ui-button-success mt-5"></button>
 </form>
 

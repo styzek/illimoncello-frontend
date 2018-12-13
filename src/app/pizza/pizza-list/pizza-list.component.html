@@ -19,15 +19,16 @@
   <p-button label="Create your pizza" class="float-right mr-5" styleClass="ui-button-info" (onClick)="topizzacustomhtml($event)"></p-button>
   <p-button label="Command yours ingredients" class="float-right mr-5" styleClass="ui-button-info" (onClick)="topizzapartyhtml($event)"></p-button>
   
-  <p-toast position="top" [style]="{marginTop: '55px'}" key="myKey1" life ="'200ms'" [showTransitionOptions]="'100ms'" [hideTransitionOptions]="'100ms'"></p-toast>
+  <p-toast position="top" key="myKey1" life ="'200ms'" [showTransitionOptions]="'100ms'" [hideTransitionOptions]="'100ms'"></p-toast>
 <!-- Section: Products v.1 -->
 <section class="text-center my-5">
 
-    <h2 class="h1-responsive font-weight-bold text-center my-5">Your favorite pizzas</h2>
+   
 
-    <div *ngIf="(isLoggedIn)" class="row">
-      
+    <div *ngIf="(isLoggedIn)" >
+       <h2 class="h1-responsive font-weight-bold text-center my-5">Your favorite pizzas</h2>
         <!-- Grid column -->
+        <div class="row">
         <div class="col-lg-3 col-md-6 mb-lg-0 mb-4"  *ngFor="let pizza of pizzaFav">
           <!-- Card -->
          
@@ -66,6 +67,7 @@
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
 

@@ -7,6 +7,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import {CalendarModule} from 'primeng/calendar';
 import { CartCalculatorComponent } from './cart-calculator/cart-calculator.component';
+import { ToastModule } from 'primeng/toast';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [LoginComponent, InscriptionComponent, CartComponent, CartCalculatorComponent],
@@ -15,7 +19,11 @@ import { CartCalculatorComponent } from './cart-calculator/cart-calculator.compo
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    CalendarModule
+    CalendarModule,
+    ToastModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    ButtonModule
   ]
 })
 export class UserModule { }

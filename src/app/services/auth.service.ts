@@ -26,6 +26,7 @@ export class AuthService {
   user: User = {username: '', password: ''};
 
   constructor(private http: HttpClient, private tokenService: TokenStorage, private router: Router) {
+    this.pizzaFav = [];
   }
 
   attemptAuth(username: string, password: string): Observable<any> {

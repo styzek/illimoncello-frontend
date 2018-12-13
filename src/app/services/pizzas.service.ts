@@ -44,7 +44,7 @@ export class PizzasService {
   }
 
 
-	public addBestPizza(pizza: Pizza, name: String): Observable<String> {
+	public addBestPizza(pizza: Pizza, name: String): Observable<Pizza> {
     return this._http.post<any>(this.URL+'/addbestpizza/'+ name, pizza);
 	}
  
@@ -88,10 +88,10 @@ export class PizzasService {
 
 
 		//this.toastrService.wait('Adding Pizza to Cart', 'Pizza Adding to the cart');
-		setTimeout(() => {
+		
 			window.sessionStorage.setItem('avct_item', JSON.stringify(a));
 			this.calculateLocalCartPizzaCounts();
-		}, 500); 
+	
 	}
 
 	/* addToCartPizzaCustAndParty(pizza: Pizza): void {
@@ -154,11 +154,10 @@ export class PizzasService {
 	 }
 	}
 	 a.push(pizza);
-	 setTimeout(() => {
+	 
 		 window.sessionStorage.setItem('avct_item', JSON.stringify(a));
 		 this.calculateLocalCartPizzaCounts();
-	 }, 500); 
-	
+	 
 	}
 
 	substractNumberOfPizzaToCart(pizza: Pizza): void {
@@ -180,10 +179,10 @@ export class PizzasService {
 			 break;
 		 };}
 	 a.push(pizza);
-	 setTimeout(() => {
+	 
 		 window.sessionStorage.setItem('avct_item', JSON.stringify(a));
 		 this.calculateLocalCartPizzaCounts();
-	 }, 500); 
+	 
 	}
 	}
 

@@ -27,6 +27,7 @@ export class CartComponent implements OnInit {
 
 	ngOnInit() {
 		//const subject = new Rx.BehaviorSubject();
+		
 		this._authSevice.isLoggedIn().subscribe(value => this.isLoggedIn = value);
 		this._authSevice.getUserFavPizza(sessionStorage.getItem('currentuser')).subscribe(value => this.pizzaFav = value);
 
@@ -55,8 +56,9 @@ export class CartComponent implements OnInit {
 	addBestPizza(pizza: Pizza) {
     
 		if (!this.pizzaFav.some( pizzaf => pizzaf.name === pizza.name)){
-		  this._pizzaService.addBestPizza(pizza, window.sessionStorage.getItem('currentuser')).subscribe(resp => this.result = resp);
+		  this._pizzaService.addBestPizza(pizza, window.sessionStorage.getItem('currentuser')).subscribe(resp => this._authSevice.pizzaFav.push(resp));
 		  this.messageService.add({key: 'myKey1', severity:'success', summary: 'Success', detail: 'Pizza added to favorites'});
+		console.log(this.result);
 		} else {
 		  this.messageService.add({key: 'myKey1', severity:'error', summary: 'Failure', detail: 'Pizza already in favorites'});
 		}

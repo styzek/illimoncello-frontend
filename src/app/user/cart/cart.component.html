@@ -59,7 +59,7 @@
                     </span>
                   </div>
                   
-                    <button *ngIf='pizza.name != "PizzaParty" && !pizzaFav.includes(pizza)' class="mt-3" pButton type="button" [disabled]="!(isLoggedIn)" (click)="addBestPizza(pizza)" icon="pi pi-star" iconPos="right" label="Favorite"></button>
+                    <button *ngIf='pizza.name != "PizzaParty"' class="mt-3" pButton type="button" [disabled]="!(isLoggedIn)" (click)="addBestPizza(pizza)" icon="pi pi-star" iconPos="right" label="Favorite"></button>
 
                   </div>
                 <!--/.Card content-->

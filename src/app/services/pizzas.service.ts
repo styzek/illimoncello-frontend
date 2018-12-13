@@ -47,7 +47,7 @@ export class PizzasService {
   }
 
 
-	public addBestPizza(pizza: Pizza, name: String): Observable<String> {
+	public addBestPizza(pizza: Pizza, name: String): Observable<Pizza> {
     return this._http.post<any>(this.URL+'/addbestpizza/'+ name, pizza);
 	}
   

@@ -22,11 +22,12 @@
 <!-- Section: Products v.1 -->
 <section class="text-center my-5">
 
-    <h2 class="h1-responsive font-weight-bold text-center my-5">Your favorite pizzas</h2>
+   
 
-    <div *ngIf="(isLoggedIn)" class="row">
-      
+    <div *ngIf="(isLoggedIn)" >
+       <h2 class="h1-responsive font-weight-bold text-center my-5">Your favorite pizzas</h2>
         <!-- Grid column -->
+        <div class="row">
         <div class="col-lg-3 col-md-6 mb-lg-0 mb-4"  *ngFor="let pizza of pizzaFav">
           <!-- Card -->
          
@@ -65,6 +66,7 @@
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
 

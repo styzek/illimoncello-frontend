@@ -19,5 +19,6 @@ export class HeaderComponentComponent implements OnInit {
   ngOnInit() {
     this.authserv.isLoggedIn().subscribe(value => this.isLoggedIn = value);
     this.authserv.currentMessage.subscribe(name => this.currentUser = window.sessionStorage.getItem('currentuser'));
+    
   }
  }

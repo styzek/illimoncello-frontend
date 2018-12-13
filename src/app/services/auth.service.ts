@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { TokenStorage } from '../user/token.storage';
 import { User } from '../domain/user';
 import { map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Pizza } from '../domain/pizza';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +50,6 @@ export class AuthService {
         this.changeMessage(username);
         this.getUserFavPizza(username).subscribe(value => this.pizzaFav = value);
         sessionStorage.setItem('favPizzas', JSON.stringify(this.pizzaFav));
-        this.router.navigate(['welcome']);
       }
     );
   }

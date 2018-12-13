@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpInterceptor, HttpRequest, HttpHandler, HttpSentEvent, HttpHeaderResponse, HttpProgressEvent,
-  HttpResponse, HttpUserEvent, HttpErrorResponse} from '@angular/common/http';
+  HttpResponse, HttpUserEvent, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TokenStorage } from '../user/token.storage';
 
-const TOKEN_HEADER_KEY = 'Authorization';
+const TOKEN_HEADER_KEY = `Authorization`;
+
 
 @Injectable()
 export class Interceptor implements HttpInterceptor {
@@ -15,19 +16,12 @@ export class Interceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler):
   Observable<HttpSentEvent | HttpHeaderResponse | HttpProgressEvent | HttpResponse<any> | HttpUserEvent<any>> {
-    let authReq = req;
+    const currentUser = this.token.getToken();
     if (this.token.getToken() != null) {
-      authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + this .token.getToken())});
+     // req.headers['Authorization'] = "Bearer "+ this.token.getToken();
+      req = req.clone({setHeaders: {'Authorization': `Bearer ${currentUser}`}});
     }
-    return next.handle(authReq).pipe(
-        tap(err => {
-          if (err instanceof HttpErrorResponse) {
-            if (err.status === 401) {
-               this.router.navigate(['error']);
-            }
-          }
-        }
-      ));
+    return next.handle(req);
   }
 
 }

@@ -1,4 +1,4 @@
-<br>
+
 <div class="container" *ngIf="cartPizzas.length > 0">
   <div class="row">
     <!-- List of Pizzas -->
@@ -74,7 +74,17 @@
      <!--  <app-cart-calculator [pizzas]="cartPizzas"></app-cart-calculator> -->
     </div>
   </div>
+  <div class="col-4">
+    <app-cart-calculator [pizzas]="cartPizzas"></app-cart-calculator>
+  </div>
 </div>
 <div class="container" *ngIf="cartPizzas.length === 0">
 <!--   <app-no-products-found [title]="messageTitle" [description]="messageDescription"></app-no-products-found> -->
+
 </div>
+<div *ngIf="isLoggedIn; else needlogin" >
+<button pButton type="button" label="Checkout" class="ui-button-rounded" style="height:75px;width:200px;font-size : 25px" (click)="checkoutcart()"></button>
+</div>
+<ng-template #needlogin>
+  <button pButton type="button" label="Login" class="ui-button-rounded" style="height:75px;width:200px;font-size : 25px" [routerLink]="['/login']"></button>
+</ng-template>

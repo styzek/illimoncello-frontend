@@ -55,8 +55,13 @@ pizzaFav: Pizza[];
    
   }
 
-  handleClick() {
+  topizzacustomhtml() {
     this.router.navigate(['/pizzacustom']);
+  }
+
+  topizzapartyhtml()
+  {
+    this.router.navigate(['/pizzaparty']);
   }
 
   removeBestPizza(pizza: Pizza) {

@@ -1,23 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Pizza } from '../domain/pizza';
 import { Category } from '../domain/category';
 import { Ingredient } from '../domain/ingredient';
 
-//import { ToastrService } from './toastr.service';
-
-const httpOptions = {
+ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+}; 
 
 @Injectable({providedIn: 'root'})
 export class PizzasService {
 
   navbarCartCount = 0;
 
-	constructor(private _http: HttpClient) { } //private toastrService: ToastrService
+	constructor(private _http: HttpClient) { }
 		
   private URL = 'http://localhost:8080/api/pizza';
 
@@ -50,18 +47,17 @@ export class PizzasService {
 	public addBestPizza(pizza: Pizza, name: String): Observable<String> {
     return this._http.post<any>(this.URL+'/addbestpizza/'+ name, pizza);
 	}
-  
  
 	// public addProduct(p: Pizza): Observable<any> {
   //   return this._http.post(this.URL, p);
 	// }
 	
 	addPizzaCustom(ingredients: Ingredient[] ): Observable<Pizza> {
-    return this._http.post<Pizza>('http://localhost:8080/api/pizza/setPizzaCustomtoCart', ingredients);
+    return this._http.post<Pizza>(this.URL + '/setPizzaCustomtoCart', ingredients);
   }
 
   addPizzaParty(ingredients: Ingredient[] ): Observable<Pizza> {
-    return this._http.post<Pizza>('http://localhost:8080/api/pizza/setPizzaPartytoCart', ingredients);
+    return this._http.post<Pizza>(this.URL + '/setPizzaPartytoCart', ingredients);
 	}
 
   	/*
@@ -143,8 +139,8 @@ export class PizzasService {
 	//add a number of pizza in the cart
 	addNumberOfPizzaToCart(pizza: Pizza): void {
 		let numberofpizzalist: Number;
-		let a: Pizza[];
-	 a = JSON.parse(window.sessionStorage.getItem('avct_item')) || [];
+		
+	const a = JSON.parse(window.sessionStorage.getItem('avct_item')) || [];
 
 	 if(a.indexOf(pizza) !== -1){}
 	 for (let i = 0; i < a.length; i++) {
@@ -162,6 +158,7 @@ export class PizzasService {
 		 window.sessionStorage.setItem('avct_item', JSON.stringify(a));
 		 this.calculateLocalCartPizzaCounts();
 	 }, 500); 
+	
 	}
 
 	substractNumberOfPizzaToCart(pizza: Pizza): void {
@@ -189,5 +186,7 @@ export class PizzasService {
 	 }, 500); 
 	}
 	}
+
+	
 
 }

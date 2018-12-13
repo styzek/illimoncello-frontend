@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/domain/user';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -15,10 +16,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private _location: Location) {
   }
 
   login(): void {
     this.authService.login(this.user.username, this.user.password);
+    this._location.back();
   }
 }

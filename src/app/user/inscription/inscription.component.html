@@ -2,7 +2,8 @@
   <div class="card-header">
     Sign Up!
   </div>
-
+  <p-toast position="top" key="myKey2" life="2000ms" [showTransitionOptions]="'100ms'"
+  [hideTransitionOptions]="'100ms'"></p-toast>
   <div class="card-body">
     <form novalidate
           (ngSubmit)="save()"

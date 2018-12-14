@@ -4,6 +4,7 @@ import {debounceTime} from 'rxjs/operators';
 import {SignupService} from 'src/app/services/signup.service';
 import {Usersignup} from 'src/app/domain/usersignup';
 import {Router} from '@angular/router';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 function emailMatcher(c: AbstractControl): { [key: string]: boolean } | null {
   const emailControl = c.get('email');
@@ -34,7 +35,7 @@ export class InscriptionComponent implements OnInit {
     email: 'Please enter a valid email address.'
   };
 
-  constructor(private _fb: FormBuilder, private _signupService: SignupService, private router: Router) {
+  constructor(private _fb: FormBuilder, private _signupService: SignupService, private router: Router, private messageService: MessageService) {
   }
 
   ngOnInit() {
@@ -76,9 +77,9 @@ export class InscriptionComponent implements OnInit {
   save() {
     this._signupService.attemptSignup(this.customerForm.value).subscribe(
       resp => {console.log(resp)},
-      err => {console.log(err)}
+      err => { this.messageService.add({key: 'myKey2', severity: 'error', summary: 'Error', detail: JSON.stringify(err.error)});}
     );
-    this.router.navigate(['welcome']);
+    //this.router.navigate(['welcome']);
   }
 
   setMessage(c: AbstractControl): void {

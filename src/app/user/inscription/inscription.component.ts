@@ -76,7 +76,7 @@ export class InscriptionComponent implements OnInit {
 
   save() {
     this._signupService.attemptSignup(this.customerForm.value).subscribe(
-      resp => {console.log(resp)},
+      resp => { this.router.navigate(['welcome']);},
       err => { this.messageService.add({key: 'myKey2', severity: 'error', summary: 'Error', detail: JSON.stringify(err.error)});}
     );
     //this.router.navigate(['welcome']);

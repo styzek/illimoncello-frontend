@@ -23,7 +23,7 @@ export class CartComponent implements OnInit {
   messageDescription = 'Please, Add Pizzas to Cart';
 
   constructor(private _pizzaService: PizzasService, private _authSevice: AuthService,
-              private _messageService: MessageService, private router: Router, private _cartService: CartService) {
+              private _messageService: MessageService, private router: Router, private _cartService: CartService, private messageService: MessageService) {
     this.pizzaFav = [];
   }
 
@@ -61,7 +61,7 @@ export class CartComponent implements OnInit {
         window.sessionStorage.removeItem('avct_item');
         this.router.navigate(['welcome']);
       },
-      err => console.log(err));
+      err => { this.messageService.add({key: 'myKey1', severity: 'error', summary: 'Error', detail: 'Oh NO we don\'t have enought: '+ err.error + '!!!!!! Choose an other pizza please'});});
   }
 
   addBestPizza(pizza: Pizza) {

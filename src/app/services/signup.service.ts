@@ -12,6 +12,6 @@ export class SignupService {
   }
 
   attemptSignup(registerForm: FormGroup): Observable<any> {
-    return this._http.post<any>('http://localhost:8080/api/signup', registerForm);
+    return this._http.put('http://localhost:8080/api/signup', registerForm,  {responseType: 'text'});
   }
 }

@@ -33,8 +33,11 @@ export class PizzaCustomComponent implements OnInit {
   }
 
   onSubmit() {
-    this._pizzaService.addPizzaCustom(this.selectedIngredients).subscribe(resp => this._pizzaService.addToCart(this.pizza = resp));
+
+    this._pizzaService.addPizzaCustom(this.selectedIngredients).subscribe(resp => this._pizzaService.addToCart(resp));
+    
     this.router.navigate(['pizzas']);
+  
   }
 
   dragStart(event, ingredient: Ingredient) {

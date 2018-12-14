@@ -4,16 +4,28 @@ import {Observable, BehaviorSubject} from 'rxjs';
 import {Pizza} from '../domain/pizza';
 import {Category} from '../domain/category';
 import {Ingredient} from '../domain/ingredient';
+import { AuthService } from './auth.service';
 
 @Injectable({providedIn: 'root'})
 export class PizzasService {
   navbarCartCount = 0;
+  isLoggedIn: boolean;
+  totalcart = new BehaviorSubject<number>(0);
+  totalValue: number;
 
-  constructor(private _http: HttpClient) {
+  constructor(private _http: HttpClient, private authserv: AuthService) {
   }
 
   private URL = 'http://localhost:8080/api/pizza';
 
+  getTotalValue(pizzas: Pizza[]): Observable<number>{
+    this.totalValue = 0;
+    pizzas.forEach((pizza) => {
+      this.totalValue += (pizza.price * +pizza.numberofpizza);
+    });
+    this.totalcart.next(this.totalValue);
+    return this.totalcart.asObservable();
+  }
 
   public getPizzasAll(): Observable<Pizza[]> {
     return this._http.get<Pizza[]>(this.URL + '/pizzas');
@@ -41,16 +53,29 @@ export class PizzasService {
 
 
   public addBestPizza(pizza: Pizza, name: String): Observable<Pizza> {
-    return this._http.post<any>(this.URL + '/addbestpizza/' + name, pizza);
+    return this._http.post<Pizza>(this.URL + '/addbestpizza/' + name, pizza);
   }
 
 
   addPizzaCustom(ingredients: Ingredient[]): Observable<Pizza> {
-    return this._http.post<Pizza>(this.URL + '/setPizzaCustomtoCart', ingredients);
+	this.authserv.isLoggedIn().subscribe(value => this.isLoggedIn = value);
+	if(this.isLoggedIn === true){
+		return this._http.post<Pizza>(this.URL + '/setPizzaCustom', ingredients);
+	}
+	else{
+	return this._http.post<Pizza>(this.URL + '/setPizzaCustomtoCart', ingredients);
+	}
+	
   }
 
   addPizzaParty(ingredients: Ingredient[]): Observable<Pizza> {
-    return this._http.post<Pizza>(this.URL + '/setPizzaPartytoCart', ingredients);
+	this.authserv.isLoggedIn().subscribe(value => this.isLoggedIn = value);
+	if(this.isLoggedIn === true){
+		return this._http.post<Pizza>(this.URL + '/setPizzaParty', ingredients);
+	}
+	else{
+	return this._http.post<Pizza>(this.URL + '/setPizzaPartytoCart', ingredients);
+	}
   }
 
   /*
@@ -132,6 +157,7 @@ export class PizzasService {
       }
     }
     a.push(pizza);
+    this.getTotalValue(a);
 
     window.sessionStorage.setItem('avct_item', JSON.stringify(a));
     this.calculateLocalCartPizzaCounts();
@@ -162,6 +188,7 @@ export class PizzasService {
         ;
       }
       a.push(pizza);
+      this.getTotalValue(a);
 
       window.sessionStorage.setItem('avct_item', JSON.stringify(a));
       this.calculateLocalCartPizzaCounts();

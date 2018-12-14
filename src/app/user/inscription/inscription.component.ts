@@ -74,7 +74,10 @@ export class InscriptionComponent implements OnInit {
   }
 
   save() {
-    this._signupService.attemptSignup(this.customerForm.value).subscribe();
+    this._signupService.attemptSignup(this.customerForm.value).subscribe(
+      resp => {console.log(resp)},
+      err => {console.log(err)}
+    );
     this.router.navigate(['welcome']);
   }
 

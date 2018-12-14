@@ -25,7 +25,9 @@ export class PizzaListComponent implements OnInit {
 
   ngOnInit() {
     this._authserv.isLoggedIn().subscribe(value => this.isLoggedIn = value);
+    setTimeout(() => {
     this._authserv.getUserFavPizza(sessionStorage.getItem('currentuser')).subscribe(value => this.pizzaFav = value);
+  }, 500)
     this._pizzaService.getPizzasAll().subscribe(
       resp => {
         this.pizzas = resp;
@@ -39,10 +41,12 @@ export class PizzaListComponent implements OnInit {
   }
 
   pizzaFilterCategory(namecategory: string) {
+    setTimeout(() => {
     this._pizzaService.getPizzaByCategory(namecategory).subscribe(resp => {
         this.pizzas = resp;
       },
       err => console.log('*** Attention : Il y a eu erreur lors de l\'appel getPizzaByCategory : ' + err));
+    }, 500)
   }
 
   addToCart(pizza: Pizza) {
@@ -51,8 +55,9 @@ export class PizzaListComponent implements OnInit {
   }
 
   addBestPizza(pizza: Pizza) {
-
+   
     if (!this.pizzaFav.some(pizzaf => pizzaf.name === pizza.name)) {
+
       this._pizzaService.addBestPizza(pizza, window.sessionStorage.getItem('currentuser')).subscribe(resp => this.pizzaFav.push(resp));
       this.messageService.add({key: 'myKey1', severity: 'success', summary: 'Success', detail: 'Pizza added to favorites'});
     } else {

@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, OnChanges, SimpleChange, SimpleChanges} from '@angular/core';
 import {Pizza} from 'src/app/domain/pizza';
+import { PizzasService } from 'src/app/services/pizzas.service';
 
 @Component({
   selector: 'app-cart-calculator',
@@ -9,19 +10,17 @@ import {Pizza} from 'src/app/domain/pizza';
 export class CartCalculatorComponent implements OnInit, OnChanges {
   @Input() pizzas: Pizza[];
 
-  totalValue = 0;
+  totalValue: number;
 
-  constructor() {
+  constructor(private _pizzaService: PizzasService) {
   }
 
   ngOnChanges(changes: SimpleChanges) {
     const dataChanges: SimpleChange = changes.pizzas;
 
     const pizzas: Pizza[] = dataChanges.currentValue;
-    this.totalValue = 0;
-    pizzas.forEach((pizza) => {
-      this.totalValue += (pizza.price * +pizza.numberofpizza);
-    });
+    
+  this._pizzaService.getTotalValue(pizzas).subscribe(resp => this.totalValue = resp);
   }
 
   ngOnInit() {

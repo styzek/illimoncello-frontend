@@ -61,7 +61,7 @@ export class CartComponent implements OnInit {
         window.sessionStorage.removeItem('avct_item');
         this.router.navigate(['welcome']);
       },
-      err => console.log('*** Attention : Il y a eu erreur lors de l\'encodage du panier : ' + err));
+      err => console.log(err));
   }
 
   addBestPizza(pizza: Pizza) {
